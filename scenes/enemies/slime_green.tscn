@@ -1,0 +1,140 @@
+[gd_scene load_steps=20 format=3 uid="uid://d06ugpq1cpsjb"]
+
+[ext_resource type="Texture2D" uid="uid://dr77s1s1yawha" path="res://assets/sprites/slime_green.png" id="1_iq1yx"]
+[ext_resource type="Script" uid="uid://c2kgn8n4iv04i" path="res://scripts/enemies/slime_green.gd" id="1_sarh6"]
+[ext_resource type="PackedScene" uid="uid://c2t37yu8gywy3" path="res://scenes/events/killzone.tscn" id="3_0rhbn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lydve"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i5iu"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wh6x8"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7l2o"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwhoj"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sarh6"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rhbn"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmdco"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbxej"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bawvr"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_excjk"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kiwh"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80bgf"]
+atlas = ExtResource("1_iq1yx")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lydve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lydve")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4i5iu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wh6x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7l2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwhoj")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sarh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rhbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmdco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbxej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bawvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_excjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kiwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80bgf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4i5iu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rhbn"]
+
+[node name="slime_green" type="Area2D" groups=["sword"]]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_sarh6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lydve")
+animation = &"dead"
+autoplay = "idle"
+
+[node name="killzone" parent="." instance=ExtResource("3_0rhbn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_4i5iu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_0rhbn")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
