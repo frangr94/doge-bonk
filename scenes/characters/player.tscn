@@ -5,21 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://c8f1gtohskdqk" path="res://assets/sprites/knight.png" id="2_yewv4"]
 [ext_resource type="Texture2D" uid="uid://ld42iohdk6ck" path="res://assets/sprites/knight_abilities.png" id="4_dyp2m"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_76oj4"]
-atlas = ExtResource("1_rp718")
-region = Rect2(128, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dyp2m"]
 atlas = ExtResource("1_rp718")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
 atlas = ExtResource("1_rp718")
-region = Rect2(192, 0, 32, 32)
+region = Rect2(160, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5jukt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_inhyd"]
 atlas = ExtResource("1_rp718")
-region = Rect2(224, 0, 32, 32)
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqk1x"]
+atlas = ExtResource("1_rp718")
+region = Rect2(224, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrqxk"]
 atlas = ExtResource("4_dyp2m")
@@ -173,16 +173,16 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_76oj4")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_dyp2m")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_atpat")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5jukt")
+"texture": SubResource("AtlasTexture_inhyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqk1x")
 }],
 "loop": false,
 "name": &"attack",
@@ -348,8 +348,10 @@ script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"dash"
+animation = &"attack"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 32
