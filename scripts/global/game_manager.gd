@@ -1,7 +1,7 @@
 extends Node
 
 var player_hp = 3
-var roll_unlock = false
+var roll_unlock = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

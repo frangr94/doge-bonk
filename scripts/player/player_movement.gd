@@ -14,26 +14,35 @@ var isAttacking = false
 # check if player is rolling
 var isDashing = false
 
+# dash cooldown
+var canDash = true
+const DASH_COOLDOWN = 0.5 #seconds
+
 
 func start_dash() -> void:
-	
-	isDashing = true
-	animated_sprite_2d.play("dash")
-	player.set_collision_layer_value(7, false) # get iframes
-	
+	if GameManager.roll_unlock == true && canDash == true:
+		canDash = false
+		isDashing = true
+		animated_sprite_2d.play("dash")
+		player.set_collision_layer_value(7, false) # get iframes
+		
+		# freeze vertical velocity to make a straightline while dashing
+		velocity.y = 0
 
-	if animated_sprite_2d.flip_h:
-		velocity.x = -SPEED * 1.8
-	else:
-		velocity.x = SPEED * 1.8
-	
-	await animated_sprite_2d.animation_finished
-	player.set_collision_layer_value(7, true) # disable iframes
-	isDashing = false
+		if animated_sprite_2d.flip_h:
+			velocity.x = -SPEED * 1.8
+		else:
+			velocity.x = SPEED * 1.8
+		
+		await animated_sprite_2d.animation_finished
+		player.set_collision_layer_value(7, true) # disable iframes
+		isDashing = false
+		await get_tree().create_timer(DASH_COOLDOWN).timeout # insert dash cooldown
+		canDash = true
 
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
+	if not is_on_floor() && isDashing == false:
 		velocity += get_gravity() * delta
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
