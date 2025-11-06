@@ -15,7 +15,8 @@ var isAttacking = false
 var isDashing = false
 
 
-func start_roll() -> void:
+func start_dash() -> void:
+	
 	isDashing = true
 	animated_sprite_2d.play("dash")
 	player.set_collision_layer_value(7, false) # get iframes
@@ -50,10 +51,16 @@ func _physics_process(delta: float) -> void:
 			$attack_area/CollisionShape2D.disabled = true
 
 	if Input.is_action_just_pressed("dash") and not isDashing and not isAttacking:
-		start_roll()
+		start_dash()
 
 	if isAttacking:
-		velocity.x = 0
+		var direction := Input.get_axis("move_left", "move_right")
+		if direction > 0:
+			animated_sprite_2d.flip_h = false
+			collision_shape_2d.position = Vector2(8,0)
+		elif direction < 0:
+			animated_sprite_2d.flip_h = true
+			collision_shape_2d.position = Vector2(-8,0)
 	elif isDashing:
 		# Maintain roll velocity
 		pass
