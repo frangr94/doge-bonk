@@ -13,7 +13,19 @@ var hp = 2
 var dead = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("sword"):
+		audio_stream_player.play()
+		await audio_stream_player.finished
+		hp -= 1
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("kamehameha"):
+		audio_stream_player.play()
+		await audio_stream_player.finished
+		hp -= 2
+
 func _process(delta: float) -> void:
 	# move and colide with objects
 	if ray_cast_right.is_colliding():
@@ -23,20 +35,7 @@ func _process(delta: float) -> void:
 		direction = 1
 		animated_sprite_2d.flip_h = false
 	position.x += direction * SPEED * delta
-
-
-func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("sword"):
-		audio_stream_player.play()
-		SPEED = 0
-		killzone.monitoring = false
-		await get_tree().create_timer(0.4).timeout
-		killzone.monitoring = true
-		SPEED = 60
-		hp -= 1
-		if hp == 0:
-			killzone.queue_free()
-			SPEED = 0
-			queue_free()
-		else:
-			animated_sprite_2d.play("idle")
+	
+	if hp <= 0:
+		killzone.queue_free()
+		queue_free()

@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvpm5nwrr1npl"]
+
+[ext_resource type="Texture2D" uid="uid://dj41vdcoi8om6" path="res://assets/sprites/kamehameha_glow.png" id="1_y5310"]
+
+[sub_resource type="GDScript" id="GDScript_y5310"]
+script/source = "extends CharacterBody2D
+
+var SPEED = 200
+
+var vel:float
+
+func _physics_process(delta: float) -> void:
+	
+	move_local_x(vel * SPEED * delta)
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtefp"]
+atlas = ExtResource("1_y5310")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xrtc"]
+atlas = ExtResource("1_y5310")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6yy8"]
+atlas = ExtResource("1_y5310")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k6yy8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtefp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xrtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6yy8")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5310"]
+
+[node name="kamehameha" type="CharacterBody2D" groups=["kamehameha"]]
+collision_layer = 32
+collision_mask = 32
+script = SubResource("GDScript_y5310")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["kamehameha"]]
+sprite_frames = SubResource("SpriteFrames_k6yy8")
+animation = &"shoot"
+autoplay = "shoot"
+frame_progress = 0.9039959
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["kamehameha"]]
+shape = SubResource("CircleShape2D_y5310")

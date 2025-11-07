@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $attack_area/CollisionShape2D
 @onready var sword_slash_sound: AudioStreamPlayer = $sword_slash_sound
+@onready var kamehameha = preload("uid://cvpm5nwrr1npl")
+@onready var kamehameha_position: Marker2D = $kamehameha_position
 
 # running and jump speed
 const SPEED = 190.0
@@ -20,9 +22,11 @@ var canDash = true
 const DASH_COOLDOWN = 0.5 #seconds
 
 # double jump controller
-
 var MAX_JUMPS = 1
 var jump_count = 0
+
+# kamahameha controller
+var isShooting = false
 
 
 
@@ -73,18 +77,15 @@ func _physics_process(delta: float) -> void:
 		if not isAttacking:
 			$attack_area/CollisionShape2D.disabled = true
 
+
+		
+	
 	if Input.is_action_just_pressed("dash") and not isDashing and not isAttacking:
 		start_dash()
 
 	if isAttacking:
-		#var direction := Input.get_axis("move_left", "move_right")
-		#if direction > 0:
-			#animated_sprite_2d.flip_h = false
-			#collision_shape_2d.position = Vector2(8,0)
-		#elif direction < 0:
-			#animated_sprite_2d.flip_h = true
-			#collision_shape_2d.position = Vector2(-8,0)
 		velocity.x = 0
+		
 	elif isDashing:
 		# Maintain roll velocity
 		pass
@@ -93,9 +94,11 @@ func _physics_process(delta: float) -> void:
 		if direction > 0:
 			animated_sprite_2d.flip_h = false
 			collision_shape_2d.position = Vector2(8,0)
+			kamehameha_position.scale.x = 1
 		elif direction < 0:
 			animated_sprite_2d.flip_h = true
 			collision_shape_2d.position = Vector2(-8,0)
+			kamehameha_position.scale.x = -1
 
 		if direction:
 			velocity.x = direction * SPEED
@@ -103,8 +106,21 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			animated_sprite_2d.play("idle")
+			
+		# kamehameha
+		if Input.is_action_just_pressed("shoot") and not isAttacking and GameManager.kamehameha_unlock == true and not isShooting:
+			isShooting = true
+			var k = kamehameha.instantiate()
+			k.global_position = kamehameha_position.global_position
+			k.vel = kamehameha_position.scale.x
+			get_parent().add_child(k)
+			await get_tree().create_timer(2).timeout
+			isShooting = false
 
 	move_and_slide()
 	# reset jumps
 	if is_on_floor():
 		jump_count = 0
+		
+
+		

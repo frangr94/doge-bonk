@@ -66,7 +66,7 @@ size = Vector2(20, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_niev6"]
 size = Vector2(14, 24)
 
-[node name="shadow_pixeler" type="Area2D" groups=["sword"]]
+[node name="shadow_pixeler" type="Area2D" groups=["kamehameha", "sword"]]
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("1_jvxqa")
@@ -91,3 +91,4 @@ shape = SubResource("RectangleShape2D_niev6")
 stream = ExtResource("4_niev6")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

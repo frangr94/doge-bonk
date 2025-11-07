@@ -120,7 +120,7 @@ size = Vector2(12, 11)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmdco"]
 size = Vector2(12, 10)
 
-[node name="slime_green" type="Area2D" groups=["sword"]]
+[node name="slime_green" type="Area2D" groups=["kamehameha", "sword"]]
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("1_sarh6")
@@ -156,3 +156,4 @@ position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_wmdco")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
