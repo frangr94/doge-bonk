@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://br0xwtyky3mkg"]
+
+[ext_resource type="Texture2D" uid="uid://dlolq85edmowb" path="res://assets/sprites/sword_chip.png" id="1_om33y"]
+[ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_s3sfa"]
+[ext_resource type="Texture2D" uid="uid://cwoujoeibjnob" path="res://assets/sprites/arrow_key.png" id="3_s3sfa"]
+
+[sub_resource type="GDScript" id="GDScript_om33y"]
+script/source = "extends Area2D
+
+@onready var interactable: Area2D = $interactable
+
+func _ready() -> void:
+	interactable.interact = _on_interact
+
+func _on_interact():
+	GameManager.attack_unlock = true
+	interactable.is_interactable = false
+	print(\"attack_unlock: \" + str(GameManager.attack_unlock))
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qbo8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om33y"]
+size = Vector2(39, 32)
+
+[node name="sword_unlocker" type="Area2D"]
+script = SubResource("GDScript_om33y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_om33y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1qbo8")
+
+[node name="interactable" parent="." instance=ExtResource("2_s3sfa")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_om33y")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(5.9604645e-08, -23.000002)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("3_s3sfa")

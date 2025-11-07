@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8k1lnlkly4v4"]
+
+[ext_resource type="AudioStream" uid="uid://blt81iymc7r11" path="res://assets/sounds/hurt.wav" id="1_nhkrt"]
+
+[node name="hurt" type="AudioStreamPlayer"]
+stream = ExtResource("1_nhkrt")

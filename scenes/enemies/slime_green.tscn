@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://d06ugpq1cpsjb"]
+[gd_scene load_steps=21 format=3 uid="uid://d06ugpq1cpsjb"]
 
 [ext_resource type="Texture2D" uid="uid://dr77s1s1yawha" path="res://assets/sprites/slime_green.png" id="1_iq1yx"]
 [ext_resource type="Script" uid="uid://c2kgn8n4iv04i" path="res://scripts/enemies/slime_green.gd" id="1_sarh6"]
 [ext_resource type="PackedScene" uid="uid://c2t37yu8gywy3" path="res://scenes/events/killzone.tscn" id="3_0rhbn"]
+[ext_resource type="AudioStream" uid="uid://b5te0uhtkka8" path="res://assets/sounds/Squish Sound Effect.mp3" id="4_wmdco"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lydve"]
 atlas = ExtResource("1_iq1yx")
@@ -81,7 +82,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -113,9 +114,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4i5iu"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rhbn"]
+size = Vector2(12, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmdco"]
+size = Vector2(12, 10)
 
 [node name="slime_green" type="Area2D" groups=["sword"]]
 collision_layer = 32
@@ -124,17 +127,32 @@ script = ExtResource("1_sarh6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lydve")
-animation = &"dead"
+animation = &"hurt"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_0rhbn")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(10, 0)
+collision_mask = 128
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(-9, 0)
+collision_mask = 128
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wmdco")
 
 [node name="killzone" parent="." instance=ExtResource("3_0rhbn")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_4i5iu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_0rhbn")
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_wmdco")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
