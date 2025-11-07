@@ -1,11 +1,12 @@
 extends Area2D
 
+@onready var interactable: Area2D = $interactable
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	interactable.interact = _on_interact
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_interact():
+	GameManager.attack_unlock = true
+	interactable.is_interactable = false
+	print("attack_unlock: " + str(GameManager.attack_unlock))
+	queue_free()

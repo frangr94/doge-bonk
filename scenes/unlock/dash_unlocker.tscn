@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://csxm3rtjudtwn"]
+
+[ext_resource type="Texture2D" uid="uid://dupuiteytfl10" path="res://assets/sprites/dash_chip.png" id="1_v2e12"]
+[ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_p0rhb"]
+
+[sub_resource type="GDScript" id="GDScript_p0rhb"]
+script/source = "extends Area2D
+
+@onready var interactable: Area2D = $interactable
+
+func _ready() -> void:
+	interactable.interact = _on_interact
+
+func _on_interact():
+	GameManager.dash_unlock = true
+	interactable.is_interactable = false
+	print(\"dash: \" + str(GameManager.dash_unlock))
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s76mw"]
+size = Vector2(42, 32.5)
+
+[node name="dash_unlocker" type="Area2D"]
+script = SubResource("GDScript_p0rhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v2e12")
+
+[node name="interactable" parent="." instance=ExtResource("2_p0rhb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
+position = Vector2(0, -0.25)
+shape = SubResource("RectangleShape2D_s76mw")

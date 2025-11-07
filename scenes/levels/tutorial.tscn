@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=15 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://owq1h7h6fucg" path="res://assets/sprites/world_tileset.png" id="1_ub0e1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://beoysmoa34fd1" path="res://scenes/ui/ui_gameplay.tscn" id="5_1wklo"]
 [ext_resource type="PackedScene" uid="uid://cfewry10rw70c" path="res://scenes/enemies/shadow_pixeler.tscn" id="6_7ac3l"]
 [ext_resource type="PackedScene" uid="uid://br0xwtyky3mkg" path="res://scenes/unlock/sword_unlocker.tscn" id="7_iig34"]
+[ext_resource type="PackedScene" uid="uid://csxm3rtjudtwn" path="res://scenes/unlock/dash_unlocker.tscn" id="8_3e81p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ub0e1"]
 texture = ExtResource("1_ub0e1")
@@ -274,3 +275,6 @@ autoplay = "move"
 
 [node name="sword_unlocker" parent="." instance=ExtResource("7_iig34")]
 position = Vector2(33, 31)
+
+[node name="dash_unlocker" parent="." instance=ExtResource("8_3e81p")]
+position = Vector2(151, 31)
