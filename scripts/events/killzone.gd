@@ -7,7 +7,7 @@ extends Area2D
 func _on_body_entered(_body) -> void:
 	if player:
 		player.global_position = Vector2(0,0)
-		hurt.play()
+		player.get_hurt()
 		GameManager.loose_hp()
 	else:
 		GameManager.loose_hp()
