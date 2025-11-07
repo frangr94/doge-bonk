@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=14 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://owq1h7h6fucg" path="res://assets/sprites/world_tileset.png" id="1_ub0e1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cfewry10rw70c" path="res://scenes/enemies/shadow_pixeler.tscn" id="6_7ac3l"]
 [ext_resource type="PackedScene" uid="uid://br0xwtyky3mkg" path="res://scenes/unlock/sword_unlocker.tscn" id="7_iig34"]
 [ext_resource type="PackedScene" uid="uid://csxm3rtjudtwn" path="res://scenes/unlock/dash_unlocker.tscn" id="8_3e81p"]
+[ext_resource type="PackedScene" uid="uid://bk1e141aawptk" path="res://scenes/enemies/enemy_stopper_horizontal.tscn" id="9_4a02d"]
 [ext_resource type="PackedScene" uid="uid://co8a822bhxyr3" path="res://scenes/unlock/kamehameha_unlocker.tscn" id="9_g7bfq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ub0e1"]
@@ -179,72 +180,10 @@ sources/0 = SubResource("TileSetAtlasSource_ub0e1")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u4f7j"]
 
-[sub_resource type="Animation" id="Animation_iig34"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(223, 34)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_7ac3l"]
-resource_name = "move"
-length = 2.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(223, 34), Vector2(135, 34)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(-1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3e81p"]
-_data = {
-&"RESET": SubResource("Animation_iig34"),
-&"move": SubResource("Animation_7ac3l")
-}
-
 [node name="tutorial" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAAPAAMAAAAAAAAAAAAQAAMAAAAAAAAAAAARAAMAAAAAAAAAAAASAAMAAAAAAAAAAAATAAMAAAAAAAAAAAAUAAMAAAAAAAAAAAAVAAMAAAAAAAAAAAAWAAMAAAAAAAAAAAAXAAMAAAAAAAAAAAAYAAMAAAAAAAAAAAAZAAMAAAAAAAAAAAAaAAMAAAAAAAAAAAAbAAMAAAAAAAAAAAAcAAMAAAAAAAAAAAAdAAMAAAAAAAAAAAAeAAMAAAAAAAAAAAAfAAMAAAAAAAAAAAAgAAMAAAAAAAAAAAAhAAMAAAAAAAAAAAAiAAMAAAAAAAAAAAAPAAIAAAABAAAAAAAbAAIAAAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAAPAAMAAAAAAAAAAAAQAAMAAAAAAAAAAAARAAMAAAAAAAAAAAASAAMAAAAAAAAAAAATAAMAAAAAAAAAAAAUAAMAAAAAAAAAAAAVAAMAAAAAAAAAAAAWAAMAAAAAAAAAAAAXAAMAAAAAAAAAAAAYAAMAAAAAAAAAAAAZAAMAAAAAAAAAAAAaAAMAAAAAAAAAAAAbAAMAAAAAAAAAAAAcAAMAAAAAAAAAAAAdAAMAAAAAAAAAAAAeAAMAAAAAAAAAAAAfAAMAAAAAAAAAAAAgAAMAAAAAAAAAAAAhAAMAAAAAAAAAAAAiAAMAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_1r3rq")
 
 [node name="killzone" parent="." instance=ExtResource("3_1r3rq")]
@@ -254,25 +193,13 @@ position = Vector2(0, 68)
 shape = SubResource("WorldBoundaryShape2D_u4f7j")
 
 [node name="player" parent="." instance=ExtResource("1_rnyxf")]
-position = Vector2(97, 23)
+position = Vector2(254, 17)
 collision_mask = 192
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(3, 3)
 
-[node name="slime_green" parent="." instance=ExtResource("4_u4f7j")]
-position = Vector2(280, 36)
-
 [node name="CanvasLayer" parent="." instance=ExtResource("5_1wklo")]
-
-[node name="shadow_pixeler" parent="." instance=ExtResource("6_7ac3l")]
-position = Vector2(223, 34)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="shadow_pixeler"]
-libraries = {
-&"": SubResource("AnimationLibrary_3e81p")
-}
-autoplay = "move"
 
 [node name="sword_unlocker" parent="." instance=ExtResource("7_iig34")]
 position = Vector2(33, 31)
@@ -282,3 +209,22 @@ position = Vector2(151, 31)
 
 [node name="kamehameha_unlocker" parent="." instance=ExtResource("9_g7bfq")]
 position = Vector2(94, 30)
+
+[node name="enemies" type="Node" parent="."]
+
+[node name="shadow_pixeler" parent="enemies" instance=ExtResource("6_7ac3l")]
+position = Vector2(529, 34)
+
+[node name="slime_green" parent="enemies" instance=ExtResource("4_u4f7j")]
+position = Vector2(280, 36)
+
+[node name="enemy_colliders" type="Node" parent="enemies"]
+
+[node name="enemy_stopper_horizontal" parent="enemies/enemy_colliders" instance=ExtResource("9_4a02d")]
+position = Vector2(553, 49)
+
+[node name="enemy_stopper_horizontal2" parent="enemies/enemy_colliders" instance=ExtResource("9_4a02d")]
+position = Vector2(457, 48)
+
+[node name="enemy_stopper_horizontal3" parent="enemies/enemy_colliders" instance=ExtResource("9_4a02d")]
+position = Vector2(270, 47)

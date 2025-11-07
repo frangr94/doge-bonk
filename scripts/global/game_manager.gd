@@ -1,7 +1,7 @@
 extends Node
 
 var player_hp = 3
-var attack_unlock = false
+var attack_unlock = true
 var dash_unlock = false
 var double_jump_unlock = true
 var kamehameha_unlock = false

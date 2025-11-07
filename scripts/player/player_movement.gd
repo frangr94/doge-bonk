@@ -29,7 +29,6 @@ var jump_count = 0
 var isShooting = false
 
 
-
 func start_dash() -> void:
 	if GameManager.dash_unlock == true && canDash == true:
 		canDash = false
@@ -53,6 +52,7 @@ func start_dash() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
 	if not is_on_floor() && isDashing == false:
 		velocity += get_gravity() * delta
 
@@ -66,11 +66,12 @@ func _physics_process(delta: float) -> void:
 		jump_count += 1
 		animated_sprite_2d.play("jump")
 
+	# attack controller
 	if Input.is_action_just_pressed("attack") and not isAttacking and not isDashing and GameManager.attack_unlock == true:
 		isAttacking = true
+		$attack_area/CollisionShape2D.disabled = false
 		animated_sprite_2d.play("attack")
 		sword_slash_sound.play()
-		$attack_area/CollisionShape2D.disabled = false
 		await animated_sprite_2d.animation_finished
 		isAttacking = false
 	else:
@@ -97,13 +98,14 @@ func _physics_process(delta: float) -> void:
 			kamehameha_position.scale.x = 1
 		elif direction < 0:
 			animated_sprite_2d.flip_h = true
-			collision_shape_2d.position = Vector2(-8,0)
+			collision_shape_2d.position = Vector2(-18,0)
+		
 			kamehameha_position.scale.x = -1
 
 		if direction:
 			velocity.x = direction * SPEED
 			animated_sprite_2d.play("run")
-		else:
+		elif not isAttacking:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			animated_sprite_2d.play("idle")
 			

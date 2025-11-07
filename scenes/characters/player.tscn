@@ -10,19 +10,19 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_inhyd"]
 atlas = ExtResource("1_rp718")
-region = Rect2(128, 32, 32, 32)
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqk1x"]
 atlas = ExtResource("1_rp718")
-region = Rect2(160, 32, 32, 32)
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1y1o"]
 atlas = ExtResource("1_rp718")
-region = Rect2(192, 32, 32, 32)
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hnvwh"]
 atlas = ExtResource("1_rp718")
-region = Rect2(224, 32, 32, 32)
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrqxk"]
 atlas = ExtResource("4_dyp2m")
@@ -339,10 +339,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76oj4"]
-size = Vector2(10.5, 23.5)
+size = Vector2(31, 26.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyp2m"]
-size = Vector2(11, 16)
+size = Vector2(7, 14)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 11
@@ -353,9 +353,8 @@ script = ExtResource("1_76oj4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-8, -7)
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"kamehameha"
-autoplay = "idle"
-frame_progress = 0.045226667
+animation = &"attack"
+frame = 1
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 position = Vector2(-3, -5)
@@ -363,11 +362,11 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
-position = Vector2(6.75, -2.25)
+position = Vector2(-2.5, -3.75)
 shape = SubResource("RectangleShape2D_76oj4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7.5, -3)
+position = Vector2(-7.5, -2)
 shape = SubResource("RectangleShape2D_dyp2m")
 
 [node name="sword_slash_sound" type="AudioStreamPlayer" parent="."]

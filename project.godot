@@ -70,6 +70,7 @@ shoot={
 2d_physics/layer_6="sword"
 2d_physics/layer_7="killzone"
 2d_physics/layer_8="terrain"
+2d_physics/layer_9="enemy_stoppers"
 
 [rendering]
 
