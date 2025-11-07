@@ -3,8 +3,9 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = $"."
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $attack_area/CollisionShape2D
+@onready var sword_slash_sound: AudioStreamPlayer = $sword_slash_sound
 
-
+# running and jump speed
 const SPEED = 190.0
 const JUMP_VELOCITY = -300.0
 
@@ -18,9 +19,15 @@ var isDashing = false
 var canDash = true
 const DASH_COOLDOWN = 0.5 #seconds
 
+# double jump controller
+
+var MAX_JUMPS = 1
+var jump_count = 0
+
+
 
 func start_dash() -> void:
-	if GameManager.roll_unlock == true && canDash == true:
+	if GameManager.dash_unlock == true && canDash == true:
 		canDash = false
 		isDashing = true
 		animated_sprite_2d.play("dash")
@@ -45,13 +52,20 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() && isDashing == false:
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	# jump controller
+	if GameManager.double_jump_unlock == true:
+		MAX_JUMPS = 2
+	else:
+		MAX_JUMPS = 1
+	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
 		velocity.y = JUMP_VELOCITY
+		jump_count += 1
 		animated_sprite_2d.play("jump")
 
-	if Input.is_action_just_pressed("attack") and not isAttacking and not isDashing:
+	if Input.is_action_just_pressed("attack") and not isAttacking and not isDashing and GameManager.attack_unlock == true:
 		isAttacking = true
 		animated_sprite_2d.play("attack")
+		sword_slash_sound.play()
 		$attack_area/CollisionShape2D.disabled = false
 		await animated_sprite_2d.animation_finished
 		isAttacking = false
@@ -63,13 +77,14 @@ func _physics_process(delta: float) -> void:
 		start_dash()
 
 	if isAttacking:
-		var direction := Input.get_axis("move_left", "move_right")
-		if direction > 0:
-			animated_sprite_2d.flip_h = false
-			collision_shape_2d.position = Vector2(8,0)
-		elif direction < 0:
-			animated_sprite_2d.flip_h = true
-			collision_shape_2d.position = Vector2(-8,0)
+		#var direction := Input.get_axis("move_left", "move_right")
+		#if direction > 0:
+			#animated_sprite_2d.flip_h = false
+			#collision_shape_2d.position = Vector2(8,0)
+		#elif direction < 0:
+			#animated_sprite_2d.flip_h = true
+			#collision_shape_2d.position = Vector2(-8,0)
+		velocity.x = 0
 	elif isDashing:
 		# Maintain roll velocity
 		pass
@@ -90,3 +105,6 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.play("idle")
 
 	move_and_slide()
+	# reset jumps
+	if is_on_floor():
+		jump_count = 0
