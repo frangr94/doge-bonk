@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://co8a822bhxyr3"]
+
+[ext_resource type="Texture2D" uid="uid://rqvjkc7cylud" path="res://assets/sprites/kamehameha_chip.png" id="1_lyh5q"]
+[ext_resource type="Script" uid="uid://b43cgheaq61ns" path="res://scripts/unlock/kamehameha_unlocker.gd" id="1_ubbfr"]
+[ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_ubbfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdyb1"]
+size = Vector2(36, 35)
+
+[node name="kamehameha_unlocker" type="Area2D"]
+script = ExtResource("1_ubbfr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lyh5q")
+
+[node name="interactable" parent="." instance=ExtResource("2_ubbfr")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_gdyb1")
