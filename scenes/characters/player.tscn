@@ -325,14 +325,14 @@ size = Vector2(7, 14)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 11
-collision_layer = 112
-collision_mask = 112
+collision_layer = 248
+collision_mask = 240
 script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
 animation = &"hit"
-frame_progress = 0.68378425
+frame_progress = 0.37430117
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 32

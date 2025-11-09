@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cgedpabtuxme2"
+path="res://.godot/imported/merlin_introduction.dialogue-808aae6b0b289fa94865710b80d87014.tres"
+
+[deps]
+
+source_file="res://dialogs/merlin_introduction.dialogue"
+dest_files=["res://.godot/imported/merlin_introduction.dialogue-808aae6b0b289fa94865710b80d87014.tres"]
+
+[params]
+
+defaults=true

@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://beoysmoa34fd1" path="res://scenes/ui/ui_gameplay.tscn" id="5_1wklo"]
 [ext_resource type="PackedScene" uid="uid://cfewry10rw70c" path="res://scenes/enemies/shadow_pixeler.tscn" id="6_7ac3l"]
 [ext_resource type="PackedScene" uid="uid://br0xwtyky3mkg" path="res://scenes/unlock/sword_unlocker.tscn" id="7_iig34"]
-[ext_resource type="PackedScene" uid="uid://csxm3rtjudtwn" path="res://scenes/unlock/dash_unlocker.tscn" id="8_3e81p"]
 [ext_resource type="PackedScene" uid="uid://bk1e141aawptk" path="res://scenes/enemies/enemy_stopper_horizontal.tscn" id="9_4a02d"]
-[ext_resource type="PackedScene" uid="uid://co8a822bhxyr3" path="res://scenes/unlock/kamehameha_unlocker.tscn" id="9_g7bfq"]
+[ext_resource type="PackedScene" uid="uid://cjxhpskuvdx1k" path="res://scenes/characters/player_stopper.tscn" id="10_4a02d"]
+[ext_resource type="PackedScene" uid="uid://dt8gc8kpc8b33" path="res://scenes/characters/merlin_idle.tscn" id="11_uu0hj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ub0e1"]
 texture = ExtResource("1_ub0e1")
@@ -193,7 +193,7 @@ position = Vector2(0, 68)
 shape = SubResource("WorldBoundaryShape2D_u4f7j")
 
 [node name="player" parent="." instance=ExtResource("1_rnyxf")]
-position = Vector2(254, 17)
+position = Vector2(-47, 21)
 collision_mask = 192
 
 [node name="Camera2D" type="Camera2D" parent="player"]
@@ -203,12 +203,6 @@ zoom = Vector2(3, 3)
 
 [node name="sword_unlocker" parent="." instance=ExtResource("7_iig34")]
 position = Vector2(33, 31)
-
-[node name="dash_unlocker" parent="." instance=ExtResource("8_3e81p")]
-position = Vector2(151, 31)
-
-[node name="kamehameha_unlocker" parent="." instance=ExtResource("9_g7bfq")]
-position = Vector2(94, 30)
 
 [node name="enemies" type="Node" parent="."]
 
@@ -230,3 +224,9 @@ position = Vector2(457, 48)
 
 [node name="enemy_stopper_horizontal3" parent="enemies/enemy_colliders" instance=ExtResource("9_4a02d")]
 position = Vector2(270, 47)
+
+[node name="merlin" parent="." instance=ExtResource("11_uu0hj")]
+position = Vector2(-12, 37)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("10_4a02d")]
+position = Vector2(7, 49)
