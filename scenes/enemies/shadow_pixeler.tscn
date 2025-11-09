@@ -50,7 +50,7 @@ animations = [{
 size = Vector2(11, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_niev6"]
-size = Vector2(14, 24)
+size = Vector2(10, 24)
 
 [node name="shadow_pixeler" type="Area2D" groups=["kamehameha", "sword"]]
 collision_layer = 32

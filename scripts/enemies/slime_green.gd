@@ -7,25 +7,20 @@ extends Area2D
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 # properties
-var SPEED = 60
+var SPEED = 40
+
 var direction = 1
 var hp = 5
-var dead = false
-
-# pushback
-var pushback_velocity := Vector2.ZERO
-var pushback_decay := 300.0  # higher = faster stop
-
-
-
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("sword"):
 		SPEED = 0
 		animated_sprite_2d.play("hurt")
 		audio_stream_player.play()
+		Engine.time_scale = 0.7
 		await get_tree().create_timer(0.5).timeout
-		SPEED = 60
+		Engine.time_scale = 1
+		SPEED = 40
 		hp -= 1
 		animated_sprite_2d.play("idle")
 

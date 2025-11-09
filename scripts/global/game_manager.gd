@@ -1,10 +1,10 @@
 extends Node
 
 var player_hp = 3
-var attack_unlock = true
-var dash_unlock = true
-var double_jump_unlock = true
-var kamehameha_unlock = true
+var attack_unlock = false
+var dash_unlock = false
+var double_jump_unlock = false
+var kamehameha_unlock = false
 
 @onready var hp_label: Label = $CanvasLayer/hp_label
 

@@ -7,7 +7,7 @@ extends Area2D
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 
 # properties
-var SPEED = 60
+var SPEED = 50
 var direction = 1
 var hp = 2
 
