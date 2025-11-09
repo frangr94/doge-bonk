@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://dt8gc8kpc8b33"]
+
+[ext_resource type="Script" uid="uid://df7pftchmi46" path="res://scripts/dialogs/merlin_tutorial.gd" id="1_dnjyh"]
+[ext_resource type="Texture2D" uid="uid://bsxsm44erxww0" path="res://assets/sprites/merlin_.png" id="1_uulf3"]
+[ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_ylntc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uulf3"]
+atlas = ExtResource("1_uulf3")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylntc"]
+atlas = ExtResource("1_uulf3")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnjyh"]
+atlas = ExtResource("1_uulf3")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kndn"]
+atlas = ExtResource("1_uulf3")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1f157"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uulf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylntc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnjyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kndn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnjyh"]
+size = Vector2(26, 20)
+
+[node name="merlin" type="Area2D"]
+script = ExtResource("1_dnjyh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1f157")
+autoplay = "default"
+frame_progress = 0.6708853
+
+[node name="interactable" parent="." instance=ExtResource("2_ylntc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_dnjyh")

@@ -29,6 +29,9 @@ var jump_count = 0
 var isShooting = false
 
 
+func get_hurt():
+	animated_sprite_2d.play("hit")
+
 func start_dash() -> void:
 	if GameManager.dash_unlock == true && canDash == true:
 		canDash = false
@@ -94,13 +97,14 @@ func _physics_process(delta: float) -> void:
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction > 0:
 			animated_sprite_2d.flip_h = false
-			collision_shape_2d.position = Vector2(8,0)
+			collision_shape_2d.position = Vector2(5.25,0)
 			kamehameha_position.scale.x = 1
+			kamehameha_position.position = Vector2(4,2)
 		elif direction < 0:
 			animated_sprite_2d.flip_h = true
-			collision_shape_2d.position = Vector2(-18,0)
-		
+			collision_shape_2d.position = Vector2(-5.25,0)
 			kamehameha_position.scale.x = -1
+			kamehameha_position.position = Vector2(-4,2)
 
 		if direction:
 			velocity.x = direction * SPEED
