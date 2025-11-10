@@ -1,10 +1,10 @@
 extends Node
 
-var player_hp = 3
-var attack_unlock = false
-var dash_unlock = false
-var double_jump_unlock = false
-var kamehameha_unlock = false
+var player_hp: int = 3
+var attack_unlock: bool = false
+var dash_unlock: bool = false
+var double_jump_unlock: bool = false
+var kamehameha_unlock: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,9 +16,10 @@ func _ready() -> void:
 	print("attack_unlock: " + str(attack_unlock))
 
 # manages player hp
+signal health_changed
 func loose_hp():
 	player_hp -= 1
-	print(player_hp)
+	emit_signal("health_changed")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(_delta: float) -> void:

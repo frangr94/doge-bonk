@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://o14dnbc0pjpf"]
+
+[ext_resource type="Texture2D" uid="uid://c0fs3rxyi61vr" path="res://assets/sprites/hp-heart.png" id="1_2hajf"]
+
+[node name="hp-heart" type="Sprite2D"]
+texture = ExtResource("1_2hajf")
+region_enabled = true
+region_rect = Rect2(4, 6, 56, 52)
