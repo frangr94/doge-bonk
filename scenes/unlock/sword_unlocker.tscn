@@ -6,10 +6,18 @@
 [sub_resource type="GDScript" id="GDScript_om33y"]
 script/source = "extends Area2D
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 @onready var interactable: Area2D = $interactable
+
+@onready var collision_shape_2d: CollisionShape2D = $interactable/CollisionShape2D
 
 func _ready() -> void:
 	interactable.interact = _on_interact
+	if GameManager.attack_unlock == true:
+		sprite_2d.visible = false
+		collision_shape_2d.disabled = true
+		
 
 func _on_interact():
 	GameManager.attack_unlock = true

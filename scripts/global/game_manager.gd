@@ -1,19 +1,30 @@
 extends Node
 
-var player_hp: int = 3
-var attack_unlock: bool = false
-var dash_unlock: bool = false
-var double_jump_unlock: bool = false
-var kamehameha_unlock: bool = false
+var max_hp: int
+var player_hp: int
+var attack_unlock: bool
+var dash_unlock: bool
+var double_jump_unlock: bool
+var kamehameha_unlock: bool
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# ADD LOAD
+	SaveLoad._load()
+	max_hp = SaveLoad.SaveFileData.max_hp
+	player_hp = SaveLoad.SaveFileData.player_hp
+	attack_unlock = SaveLoad.SaveFileData.attack_unlock
+	dash_unlock = SaveLoad.SaveFileData.dash_unlock
+	double_jump_unlock = SaveLoad.SaveFileData.double_jump_unlock
+	kamehameha_unlock = SaveLoad.SaveFileData.kamehameha_unlock
 	print("GameManager: -> ready")
 	print("hp: "+ str(player_hp))
 	print("roll_unlock: "+ str(dash_unlock))
 	print("double_jump_unlock: "+ str(double_jump_unlock) )
 	print("attack_unlock: " + str(attack_unlock))
+	print("kamehameha unlock: "+str(kamehameha_unlock))
+
 
 # manages player hp
 signal health_changed
