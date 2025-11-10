@@ -49,7 +49,6 @@ func _ready():
 func get_hurt():
 	animated_sprite_2d.play("hit")
 
-
 func start_dash() -> void:
 	if GameManager.dash_unlock == true and canDash == true:
 		canDash = false

@@ -82,9 +82,6 @@ collision_mask = 192
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(3, 3)
 
-[node name="sword_unlocker" parent="." instance=ExtResource("7_iig34")]
-position = Vector2(106, -1)
-
 [node name="enemies" type="Node" parent="."]
 
 [node name="shadow_pixeler" parent="enemies" instance=ExtResource("6_7ac3l")]
@@ -113,4 +110,7 @@ position = Vector2(-9, 36)
 position = Vector2(9, 252)
 
 [node name="save_point" parent="." instance=ExtResource("10_uu0hj")]
-position = Vector2(209, 25)
+position = Vector2(195, 25)
+
+[node name="sword_unlocker" parent="." instance=ExtResource("7_iig34")]
+position = Vector2(99, -6)
