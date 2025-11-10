@@ -1,5 +1,6 @@
 extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
-	GameManager.loose_hp()
-	print("fell out of terrain")
+	if body.name == "player":
+		GameManager.loose_hp()
+		body.global_position = SaveLoad.SaveFileData.player_position

@@ -35,8 +35,7 @@ func loose_hp():
 func port_heal():
 	player_hp = max_hp
 	emit_signal("health_changed")
-
-
+	
 func SaveGame():
 		SaveLoad.SaveFileData.max_hp = GameManager.max_hp
 		if player_hp <= 0:
@@ -48,6 +47,8 @@ func SaveGame():
 		SaveLoad.SaveFileData.double_jump_unlock = GameManager.double_jump_unlock
 		SaveLoad.SaveFileData.kamehameha_unlock = GameManager.kamehameha_unlock
 		SaveLoad._save()
+
+	
 
 func _process(_delta: float) -> void:
 	if player_hp <= 0:
