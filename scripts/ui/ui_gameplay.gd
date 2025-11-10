@@ -1,15 +1,20 @@
 extends CanvasLayer
 
-@onready var hp_label: Label = $hp_label
+# heart bar
+var full_heart = preload("res://assets/sprites/hp-heart.png")
+
+@onready var heart_bar: HBoxContainer = $HBoxContainer
+
+func update_hearts():
+	for child in heart_bar.get_children():
+		child.queue_free()
+	for i in range(GameManager.player_hp):
+		var heart = TextureRect.new()
+		heart.texture = full_heart
+		heart_bar.add_child(heart)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if hp_label:
-		print("hp label lista")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	hp_label.text = "hp: " + str(GameManager.player_hp)
+	if not GameManager.health_changed.is_connected(Callable(self, "update_hearts")):
+		GameManager.health_changed.connect(Callable(self, "update_hearts"))
+		update_hearts()

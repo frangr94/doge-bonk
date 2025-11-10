@@ -28,9 +28,11 @@ runtime/balloon_path="res://scenes/dialogs/merlin_tutorial//balloon.tscn"
 
 [display]
 
-window/size/viewport_width=1366
-window/size/viewport_height=768
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/initial_position_type=3
 window/size/borderless=true
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [editor_plugins]

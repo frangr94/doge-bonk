@@ -1,15 +1,17 @@
-[gd_scene load_steps=14 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=16 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
-[ext_resource type="PackedScene" uid="uid://c2t37yu8gywy3" path="res://scenes/events/killzone.tscn" id="3_1r3rq"]
 [ext_resource type="PackedScene" uid="uid://d06ugpq1cpsjb" path="res://scenes/enemies/slime_green.tscn" id="4_u4f7j"]
 [ext_resource type="PackedScene" uid="uid://cfewry10rw70c" path="res://scenes/enemies/shadow_pixeler.tscn" id="6_7ac3l"]
 [ext_resource type="PackedScene" uid="uid://br0xwtyky3mkg" path="res://scenes/unlock/sword_unlocker.tscn" id="7_iig34"]
 [ext_resource type="PackedScene" uid="uid://bk1e141aawptk" path="res://scenes/enemies/enemy_stopper_horizontal.tscn" id="9_4a02d"]
 [ext_resource type="PackedScene" uid="uid://cjxhpskuvdx1k" path="res://scenes/characters/player_stopper.tscn" id="10_4a02d"]
 [ext_resource type="PackedScene" uid="uid://c7mf52qcfh6k4" path="res://scenes/levels/save_point.tscn" id="10_uu0hj"]
+[ext_resource type="PackedScene" uid="uid://bheh3gb11aaob" path="res://scenes/levels/recharge_port.tscn" id="11_irnc0"]
 [ext_resource type="PackedScene" uid="uid://dt8gc8kpc8b33" path="res://scenes/characters/merlin_idle.tscn" id="11_uu0hj"]
+[ext_resource type="PackedScene" uid="uid://d856awsyxgm3" path="res://scenes/events/terrain_killzone.tscn" id="12_84vya"]
+[ext_resource type="PackedScene" uid="uid://beoysmoa34fd1" path="res://scenes/ui/ui_gameplay.tscn" id="12_irnc0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irnc0"]
 texture = ExtResource("2_uu0hj")
@@ -60,7 +62,7 @@ physics_layer_0/collision_layer = 128
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_irnc0")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u4f7j"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_84vya"]
 
 [node name="tutorial" type="Node2D"]
 
@@ -68,12 +70,6 @@ sources/1 = SubResource("TileSetAtlasSource_irnc0")
 position = Vector2(1, 0)
 tile_map_data = PackedByteArray("AAD8/wMAAQAAAAAAAAD9/wMAAQABAAAAAAD+/wMAAQABAAAAAAD//wMAAQABAAAAAAAAAAMAAQABAAAAAAABAAMAAQABAAAAAAACAAMAAQABAAAAAAADAAMAAQABAAAAAAAEAAMAAQABAAAAAAAJAAMAAQADAAAAAAAKAAMAAQABAAAAAAALAAMAAQABAAAAAAAMAAMAAQABAAAAAAANAAMAAQABAAAAAAAOAAMAAQABAAAAAAAPAAMAAQABAAAAAAAQAAMAAQABAAAAAAARAAMAAQABAAAAAAASAAMAAQABAAAAAAATAAMAAQABAAAAAAAUAAMAAQABAAAAAAAVAAMAAQABAAAAAAAWAAMAAQABAAAAAAAXAAMAAQABAAAAAAAYAAMAAQABAAAAAAAZAAMAAQABAAAAAAAaAAMAAQABAAAAAAAbAAMAAQABAAAAAAAcAAMAAQABAAAAAAAdAAMAAQABAAAAAAAeAAMAAQABAAAAAAAfAAMAAQABAAAAAAAgAAMAAQABAAAAAAAhAAMAAQABAAAAAAAiAAMAAQABAAAAAAAIAAMAAQAAAAAAAAAFAAEAAQADAAIAAAAGAAEAAQAEAAIAAAAHAAEAAQAFAAIAAAAFAAQAAQADAAQAAAAGAAQAAQADAAQAAAAHAAQAAQADAAQAAAAFAAUAAQADAAQAAAAGAAUAAQADAAQAAAAHAAUAAQADAAQAAAAFAAMAAQADAAMAAAAGAAMAAQADAAMAAAAHAAMAAQADAAMAAAD+/wQAAQAAAAMAAAD//wQAAQAAAAMAAAD9/wQAAQABAAMAAAAAAAQAAQAAAAIAAAACAAQAAQABAAEAAAD8/wQAAQAAAAMAAAABAAQAAQABAAEAAAADAAQAAQAAAAAAAAAEAAQAAQABAAEAAAAIAAQAAQABAAAAAAAIAAUAAQABAAAAAAAJAAQAAQABAAAAAAAJAAUAAQABAAAAAAAKAAQAAQABAAAAAAAKAAUAAQABAAAAAAALAAQAAQABAAAAAAALAAUAAQABAAAAAAAMAAQAAQABAAAAAAAMAAUAAQABAAAAAAANAAQAAQABAAAAAAANAAUAAQABAAAAAAAOAAQAAQABAAAAAAAOAAUAAQABAAAAAAAPAAQAAQABAAAAAAAPAAUAAQABAAAAAAAQAAQAAQABAAAAAAAQAAUAAQABAAAAAAARAAQAAQABAAAAAAARAAUAAQABAAAAAAASAAQAAQABAAAAAAASAAUAAQABAAAAAAATAAQAAQABAAAAAAATAAUAAQABAAAAAAAUAAQAAQABAAAAAAAUAAUAAQABAAAAAAAVAAQAAQABAAAAAAAVAAUAAQABAAAAAAAWAAQAAQABAAAAAAAWAAUAAQABAAAAAAAXAAQAAQABAAAAAAAXAAUAAQABAAAAAAAYAAQAAQABAAAAAAAYAAUAAQABAAAAAAAZAAQAAQABAAAAAAAZAAUAAQABAAAAAAAaAAQAAQABAAAAAAAaAAUAAQABAAAAAAAbAAQAAQABAAAAAAAbAAUAAQABAAAAAAAcAAQAAQABAAAAAAAcAAUAAQABAAAAAAAdAAQAAQABAAAAAAAdAAUAAQABAAAAAAAeAAQAAQABAAAAAAAeAAUAAQABAAAAAAAfAAQAAQABAAAAAAAfAAUAAQABAAAAAAAgAAQAAQABAAAAAAAgAAUAAQABAAAAAAAhAAQAAQABAAAAAAAiAAQAAQABAAAAAAA=")
 tile_set = SubResource("TileSet_1r3rq")
-
-[node name="killzone" parent="." instance=ExtResource("3_1r3rq")]
-position = Vector2(0, 68)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
-shape = SubResource("WorldBoundaryShape2D_u4f7j")
 
 [node name="player" parent="." instance=ExtResource("1_rnyxf")]
 position = Vector2(-47, 21)
@@ -114,3 +110,20 @@ position = Vector2(195, 25)
 
 [node name="sword_unlocker" parent="." instance=ExtResource("7_iig34")]
 position = Vector2(99, -6)
+
+[node name="recharge_port" parent="." instance=ExtResource("11_irnc0")]
+position = Vector2(248, 16)
+
+[node name="ui_gameplay" parent="." instance=ExtResource("12_irnc0")]
+
+[node name="recharge_port2" parent="." instance=ExtResource("11_irnc0")]
+position = Vector2(393, 16)
+
+[node name="terrain_killzone" parent="." instance=ExtResource("12_84vya")]
+position = Vector2(-99, 66)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="terrain_killzone"]
+shape = SubResource("WorldBoundaryShape2D_84vya")
+
+[node name="save_point2" parent="." instance=ExtResource("10_uu0hj")]
+position = Vector2(32, 25)

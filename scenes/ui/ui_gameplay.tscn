@@ -2,14 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c635n32g0oqmc" path="res://scripts/ui/ui_gameplay.gd" id="1_dk42k"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="ui_gameplay" type="CanvasLayer"]
 script = ExtResource("1_dk42k")
 
-[node name="hp_label" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
