@@ -123,7 +123,7 @@ position = Vector2(270, 47)
 position = Vector2(-72, 36)
 
 [node name="StaticBody2D" parent="." instance=ExtResource("10_4a02d")]
-position = Vector2(9, 66)
+position = Vector2(-29, 287)
 
 [node name="sword_unlocker" parent="." instance=ExtResource("7_iig34")]
 position = Vector2(31, 32)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3 uid="uid://fyxvemixpeck"]
+[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3 uid="uid://crvrr4y7412b7"]
 
 [ext_resource type="Script" uid="uid://b7o6riyd5vp5m" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
 
@@ -6,5 +6,6 @@
 script = ExtResource("1_j2dgk")
 attack_unlock = true
 dash_unlock = true
+double_jump_unlock = true
 kamehameha_unlock = true
 player_position = Vector2(-127, 32)
