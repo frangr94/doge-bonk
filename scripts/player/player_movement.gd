@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var sword_slash_sound: AudioStreamPlayer = $sword_slash_sound
 @onready var kamehameha = preload("uid://cvpm5nwrr1npl")
 @onready var kamehameha_position: Marker2D = $kamehameha_position
+@onready var attack: AnimatedSprite2D = $attack
 
 # running and jump speed
 const SPEED = 190.0
@@ -75,35 +76,40 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and not isAttacking and not isDashing and GameManager.attack_unlock == true:
 		isAttacking = true
 		$attack_area/CollisionShape2D.disabled = false
-		animated_sprite_2d.play("attack")
+		attack.play("default")
 		sword_slash_sound.play()
-		await animated_sprite_2d.animation_finished
+		await attack.animation_finished
 		isAttacking = false
 	else:
 		if not isAttacking:
 			$attack_area/CollisionShape2D.disabled = true
 
 	if Input.is_action_just_pressed("dash") and not isDashing and not isAttacking:
-		start_dash()
-
-	if isAttacking:
 		velocity.x = 0
+		start_dash()
+	if isAttacking:
+		pass
 	elif isDashing:
 		# Maintain roll velocity
 		pass
+
 	else:
 		var direction := Input.get_axis("move_left", "move_right")
 
 		if direction > 0:
 			animated_sprite_2d.flip_h = false
-			collision_shape_2d.position = Vector2(5.25, 0)
+			collision_shape_2d.position = Vector2(10, 0)
 			kamehameha_position.scale.x = 1
 			kamehameha_position.position = Vector2(4, 2)
+			attack.scale.x = 1
+			attack.position = Vector2(10,0)
 		elif direction < 0:
 			animated_sprite_2d.flip_h = true
-			collision_shape_2d.position = Vector2(-5.25, 0)
+			collision_shape_2d.position = Vector2(-10, 0)
 			kamehameha_position.scale.x = -1
 			kamehameha_position.position = Vector2(-4, 2)
+			attack.scale.x = -1
+			attack.position = Vector2(-10,0)
 
 		if direction:
 			velocity.x = direction * SPEED
