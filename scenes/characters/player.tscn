@@ -356,3 +356,11 @@ stream = ExtResource("6_kqtwu")
 
 [node name="kamehameha_position" type="Marker2D" parent="."]
 position = Vector2(4, 2)
+
+[node name="health_bar" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="health_bar"]
+offset_left = 28.0
+offset_top = 26.0
+offset_right = 68.0
+offset_bottom = 66.0
