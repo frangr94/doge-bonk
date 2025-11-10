@@ -13,6 +13,7 @@ func _on_interact():
 	SaveLoad.SaveFileData.dash_unlock = GameManager.dash_unlock
 	SaveLoad.SaveFileData.double_jump_unlock = GameManager.double_jump_unlock
 	SaveLoad.SaveFileData.kamehameha_unlock = GameManager.kamehameha_unlock
+	SaveLoad.SaveFileData.player_position = global_position
 	SaveLoad._save()
-	
+
 	

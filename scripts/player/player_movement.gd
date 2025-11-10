@@ -28,23 +28,8 @@ var jump_count = 0
 # kamahameha controller
 var isShooting = false
 
-# heart bar
-var full_heart = preload("res://assets/sprites/hp-heart.png")
-
-@onready var heart_bar: HBoxContainer = $health_bar/HBoxContainer
-
-func update_hearts():
-	for child in heart_bar.get_children():
-		child.queue_free()
-	for i in range(GameManager.player_hp):
-		var heart = TextureRect.new()
-		heart.texture = full_heart
-		heart_bar.add_child(heart)
-
-# trigger hearth bar on health_changed from GameManager
 func _ready():
-	GameManager.connect("health_changed", Callable(self, "update_hearts"))
-	update_hearts()
+	global_position = SaveLoad.SaveFileData.player_position
 
 func get_hurt():
 	animated_sprite_2d.play("hit")
