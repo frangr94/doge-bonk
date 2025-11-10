@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv14oj7jwym6j"
-path="res://.godot/imported/spikes_left.png-e55dde382c136997ed4fd35fc28e8457.ctex"
+uid="uid://daccin5l1m2ij"
+path="res://.godot/imported/cpu_world_tileset.png-d680f8c7251b95ea97b8a99302ea9080.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/spikes_left.png"
-dest_files=["res://.godot/imported/spikes_left.png-e55dde382c136997ed4fd35fc28e8457.ctex"]
+source_file="res://assets/sprites/cpu_world_tileset.png"
+dest_files=["res://.godot/imported/cpu_world_tileset.png-d680f8c7251b95ea97b8a99302ea9080.ctex"]
 
 [params]
 

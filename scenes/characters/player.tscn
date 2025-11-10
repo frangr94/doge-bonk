@@ -8,21 +8,21 @@
 [ext_resource type="AudioStream" uid="uid://blt81iymc7r11" path="res://assets/sounds/hurt.wav" id="6_kqtwu"]
 [ext_resource type="PackedScene" uid="uid://cuxw63vq3svsf" path="res://scenes/unlock/interacting_component.tscn" id="7_6eyoc"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eyoc"]
+atlas = ExtResource("1_rp718")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgnko"]
+atlas = ExtResource("1_rp718")
+region = Rect2(32, 32, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_inhyd"]
 atlas = ExtResource("1_rp718")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqk1x"]
 atlas = ExtResource("1_rp718")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v1y1o"]
-atlas = ExtResource("1_rp718")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hnvwh"]
-atlas = ExtResource("1_rp718")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrqxk"]
 atlas = ExtResource("4_dyp2m")
@@ -164,16 +164,16 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6eyoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgnko")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_inhyd")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wqk1x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v1y1o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hnvwh")
 }],
 "loop": false,
 "name": &"attack",
@@ -331,8 +331,8 @@ script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"hit"
-frame_progress = 0.37430117
+animation = &"attack"
+frame_progress = 1.0
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 32
