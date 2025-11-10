@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=14 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://br0xwtyky3mkg" path="res://scenes/unlock/sword_unlocker.tscn" id="7_iig34"]
 [ext_resource type="PackedScene" uid="uid://bk1e141aawptk" path="res://scenes/enemies/enemy_stopper_horizontal.tscn" id="9_4a02d"]
 [ext_resource type="PackedScene" uid="uid://cjxhpskuvdx1k" path="res://scenes/characters/player_stopper.tscn" id="10_4a02d"]
+[ext_resource type="PackedScene" uid="uid://c7mf52qcfh6k4" path="res://scenes/levels/save_point.tscn" id="10_uu0hj"]
 [ext_resource type="PackedScene" uid="uid://dt8gc8kpc8b33" path="res://scenes/characters/merlin_idle.tscn" id="11_uu0hj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irnc0"]
@@ -38,6 +39,21 @@ texture = ExtResource("2_uu0hj")
 1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:3/0 = 0
 3:4/0 = 0
+4:3/size_in_atlas = Vector2i(2, 1)
+4:3/0 = 0
+0:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+2:6/0 = 0
+1:6/0 = 0
+0:6/0 = 0
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+0:7/size_in_atlas = Vector2i(2, 3)
+0:7/0 = 0
+2:7/size_in_atlas = Vector2i(2, 3)
+2:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_1r3rq"]
 physics_layer_0/collision_layer = 128
@@ -95,3 +111,6 @@ position = Vector2(-9, 36)
 
 [node name="StaticBody2D" parent="." instance=ExtResource("10_4a02d")]
 position = Vector2(9, 252)
+
+[node name="save_point" parent="." instance=ExtResource("10_uu0hj")]
+position = Vector2(209, 25)
