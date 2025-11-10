@@ -7,7 +7,7 @@ extends Area2D
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 # properties
-var SPEED = 40
+var SPEED = 30
 
 var direction = 1
 var hp = 5
@@ -20,7 +20,7 @@ func _on_area_entered(area: Area2D) -> void:
 		Engine.time_scale = 0.7
 		await get_tree().create_timer(0.5).timeout
 		Engine.time_scale = 1
-		SPEED = 40
+		SPEED = 30
 		hp -= 1
 		animated_sprite_2d.play("idle")
 
