@@ -9,11 +9,14 @@ extends CharacterBody2D
 @onready var attack: AnimatedSprite2D = $attack
 
 # running and jump speed
-const SPEED = 190.0
+const SPEED = 210
 const JUMP_VELOCITY = -300.0
+
 
 # check if player is attacking
 var isAttacking = false
+var canAttack = true
+const ATTACK_COOLDOWN := 0.4  # seconds between attacks
 
 # check if player is rolling
 var isDashing = false
@@ -46,9 +49,9 @@ func start_dash() -> void:
 		velocity.y = 0
 
 		if animated_sprite_2d.flip_h:
-			velocity.x = -SPEED * 1.8
+			velocity.x = -SPEED * 1.5
 		else:
-			velocity.x = SPEED * 1.8
+			velocity.x = SPEED * 1.5
 
 		await animated_sprite_2d.animation_finished
 		player.set_collision_layer_value(7, true) # disable iframes
@@ -70,16 +73,17 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
-		animated_sprite_2d.play("jump")
 
 	# attack controller
-	if Input.is_action_just_pressed("attack") and not isAttacking and not isDashing and GameManager.attack_unlock == true:
+	if Input.is_action_just_pressed("attack") and not isAttacking and canAttack and not isDashing and GameManager.attack_unlock == true:
 		isAttacking = true
-		$attack_area/CollisionShape2D.disabled = false
+		canAttack = false
 		attack.play("default")
 		sword_slash_sound.play()
-		await attack.animation_finished
+		$attack_area/CollisionShape2D.disabled = false
 		isAttacking = false
+		await get_tree().create_timer(ATTACK_COOLDOWN).timeout
+		canAttack = true
 	else:
 		if not isAttacking:
 			$attack_area/CollisionShape2D.disabled = true
@@ -111,12 +115,14 @@ func _physics_process(delta: float) -> void:
 			attack.scale.x = -1
 			attack.position = Vector2(-10,0)
 
-		if direction:
+		if direction !=0:
 			velocity.x = direction * SPEED
 			animated_sprite_2d.play("run")
-		elif not isAttacking:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			animated_sprite_2d.play("idle")
+		else:
+			velocity.x = 0
+			if not isAttacking and is_on_floor():
+				#velocity.x = move_toward(velocity.x, 0, SPEED)
+				animated_sprite_2d.play("idle")
 
 		# kamehameha
 		if Input.is_action_just_pressed("shoot") and not isAttacking and GameManager.kamehameha_unlock == true and not isShooting:

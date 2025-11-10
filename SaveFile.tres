@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_j2dgk")
 attack_unlock = true
-dash_unlock = true
-double_jump_unlock = true
-kamehameha_unlock = true
 player_position = Vector2(-127, 32)

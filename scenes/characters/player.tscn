@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
 [ext_resource type="Texture2D" uid="uid://c8f1gtohskdqk" path="res://assets/sprites/knight.png" id="2_yewv4"]
-[ext_resource type="AudioStream" uid="uid://88k63tn4n4p5" path="res://assets/sounds/sword_slash.mp3" id="5_atpat"]
+[ext_resource type="AudioStream" uid="uid://r63l03x6smqe" path="res://assets/sounds/energy_sword_slash.mp3" id="4_kqtwu"]
 [ext_resource type="AudioStream" uid="uid://blt81iymc7r11" path="res://assets/sounds/hurt.wav" id="6_kqtwu"]
 [ext_resource type="PackedScene" uid="uid://cuxw63vq3svsf" path="res://scenes/unlock/interacting_component.tscn" id="7_6eyoc"]
 
@@ -76,8 +76,8 @@ atlas = ExtResource("2_kqtwu")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vyk4"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(128, 64, 32, 32)
+atlas = ExtResource("2_kqtwu")
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfou0"]
 atlas = ExtResource("2_yewv4")
@@ -317,7 +317,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76oj4"]
-size = Vector2(38, 16)
+size = Vector2(30, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyp2m"]
 size = Vector2(7, 14)
@@ -355,7 +355,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 15.0
+"speed": 20.0
 }]
 
 [node name="player" type="CharacterBody2D"]
@@ -366,8 +366,7 @@ script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"dash"
-frame = 3
+animation = &"jump"
 frame_progress = 1.0
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
@@ -375,7 +374,7 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
-position = Vector2(10, 0)
+position = Vector2(14, 0)
 shape = SubResource("RectangleShape2D_76oj4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -383,7 +382,7 @@ position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_dyp2m")
 
 [node name="sword_slash_sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_atpat")
+stream = ExtResource("4_kqtwu")
 
 [node name="hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_kqtwu")

@@ -15,8 +15,8 @@ var hp = 5
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("sword"):
 		SPEED = 0
-		animated_sprite_2d.play("hurt")
 		audio_stream_player.play()
+		animated_sprite_2d.play("hurt")
 		Engine.time_scale = 0.7
 		await get_tree().create_timer(0.5).timeout
 		Engine.time_scale = 1
