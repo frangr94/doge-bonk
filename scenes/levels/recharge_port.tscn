@@ -4,29 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_7cj0r"]
 [ext_resource type="Script" uid="uid://cao83ce7xymiv" path="res://scripts/events/recharge_port.gd" id="2_d84m6"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cj0r"]
+atlas = ExtResource("1_do0t6")
+region = Rect2(160, 192, 32, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_d84m6"]
 atlas = ExtResource("1_do0t6")
-region = Rect2(64, 64, 32, 64)
+region = Rect2(192, 192, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1x65"]
 atlas = ExtResource("1_do0t6")
-region = Rect2(96, 64, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yweil"]
-atlas = ExtResource("1_do0t6")
-region = Rect2(128, 64, 32, 64)
+region = Rect2(224, 192, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4rm1q"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7cj0r")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_d84m6")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w1x65")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yweil")
 }],
 "loop": true,
 "name": &"default",

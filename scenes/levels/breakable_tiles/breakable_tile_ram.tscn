@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpwkr3wax7e4h"]
+
+[ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="1_70ro3"]
+[ext_resource type="Script" uid="uid://cp4ho1wh5ndoj" path="res://scripts/terrain/breakable_tile_ram.gd" id="1_nbgs6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbgs6"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3elq"]
+size = Vector2(16, 16)
+
+[node name="breakable_tile_ram" type="Area2D" groups=["sword"]]
+collision_layer = 640
+collision_mask = 640
+script = ExtResource("1_nbgs6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_70ro3")
+region_enabled = true
+region_rect = Rect2(64, 64, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nbgs6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_g3elq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

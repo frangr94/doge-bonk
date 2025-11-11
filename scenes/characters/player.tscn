@@ -324,7 +324,7 @@ animation = &"kamehameha"
 frame_progress = 0.2724617
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
-collision_layer = 32
+collision_layer = 544
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
