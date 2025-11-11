@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=32 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://dlmdq5f372df0" path="res://scenes/enemies/shadow_pixeler_big.tscn" id="17_l8ohl"]
 [ext_resource type="Script" uid="uid://ca3lm7w1cv6nj" path="res://scripts/platforms/tutorial/memory_platform_2.gd" id="17_q462l"]
 [ext_resource type="PackedScene" uid="uid://by0pq5bfvaiy8" path="res://scenes/levels/obstacles/danger_chip.tscn" id="17_wr5d5"]
+[ext_resource type="PackedScene" uid="uid://cpwkr3wax7e4h" path="res://scenes/levels/breakable_tiles/breakable_tile_ram.tscn" id="19_q462l"]
+[ext_resource type="PackedScene" uid="uid://br0xwtyky3mkg" path="res://scenes/unlock/sword_unlocker.tscn" id="20_cyy7t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irnc0"]
 texture = ExtResource("2_uu0hj")
@@ -102,6 +104,7 @@ texture = ExtResource("2_uu0hj")
 3:1/0 = 0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:4/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_1r3rq"]
@@ -155,6 +158,21 @@ _data = {
 a = Vector2(-1, -0.5)
 b = Vector2(47, -0.5)
 
+[sub_resource type="Animation" id="Animation_1x4hw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-541, -219)]
+}
+
 [sub_resource type="Animation" id="Animation_cyy7t"]
 resource_name = "move"
 length = 10.0
@@ -170,21 +188,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-541, -219), Vector2(-171, -219), Vector2(-171, -219), Vector2(-561, -219), Vector2(-561, -219)]
-}
-
-[sub_resource type="Animation" id="Animation_1x4hw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-541, -219)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hux2q"]
@@ -401,6 +404,12 @@ position = Vector2(-316, -235)
 
 [node name="danger_chip4" parent="obstacles" instance=ExtResource("17_wr5d5")]
 position = Vector2(-221, -235)
+
+[node name="breakable_tile_ram" parent="." instance=ExtResource("19_q462l")]
+position = Vector2(-200, 40)
+
+[node name="sword_unlocker" parent="." instance=ExtResource("20_cyy7t")]
+position = Vector2(15, 33)
 
 [connection signal="body_entered" from="platforms/memory_platform/platform_collider" to="platforms/memory_platform/platform_collider" method="_on_body_entered"]
 [connection signal="body_entered" from="platforms/AnimatableBody2D/platform_collider" to="platforms/AnimatableBody2D/platform_collider" method="_on_body_entered"]
