@@ -1,13 +1,12 @@
 extends Area2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
-@onready var killzone: Area2D = $killzone
+@onready var killzone_3: Area2D = $killzone3
 
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var collision_shape_2d: CollisionShape2D = $killzone/CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $killzone3/CollisionShape2D
 
 # properties
 var SPEED = 50
@@ -45,5 +44,5 @@ func _process(delta: float) -> void:
 	
 	# death
 	if hp <= 0:
-		killzone.queue_free()
+		killzone_3.queue_free()
 		queue_free()

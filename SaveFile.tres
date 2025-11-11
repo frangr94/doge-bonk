@@ -4,5 +4,4 @@
 
 [resource]
 script = ExtResource("1_j2dgk")
-attack_unlock = true
-player_position = Vector2(-127, 32)
+player_position = Vector2(-128, 32)
