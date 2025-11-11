@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://dlmdq5f372df0"]
+
+[ext_resource type="Script" uid="uid://b2mehaag0d225" path="res://scripts/enemies/shadow_pixeler_big.gd" id="1_vn3ff"]
+[ext_resource type="Texture2D" uid="uid://t0px67wm2e6v" path="res://assets/sprites/enemies_tutorial.png" id="2_cnfkx"]
+[ext_resource type="AudioStream" uid="uid://bre8pxdjj6vjc" path="res://assets/sounds/power_up.wav" id="3_klbhl"]
+[ext_resource type="PackedScene" uid="uid://bvt87cq4xwraj" path="res://scenes/events/killzonex3.tscn" id="4_t4taa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7xqm"]
+atlas = ExtResource("2_cnfkx")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niev6"]
+atlas = ExtResource("2_cnfkx")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1gb7"]
+atlas = ExtResource("2_cnfkx")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xd8n"]
+atlas = ExtResource("2_cnfkx")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l1gb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7xqm")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niev6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1gb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xd8n")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvxqa"]
+size = Vector2(47, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xd8n"]
+size = Vector2(15, 56)
+
+[node name="shadow_pixeler_big" type="Area2D" groups=["kamehameha", "sword"]]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_vn3ff")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l1gb7")
+animation = &"hit"
+autoplay = "run"
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 4.5)
+shape = SubResource("RectangleShape2D_jvxqa")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_klbhl")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(26, 0)
+collision_mask = 256
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-23, 0)
+collision_mask = 256
+
+[node name="killzone3" parent="." instance=ExtResource("4_t4taa")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone3"]
+position = Vector2(1.5, 4)
+shape = SubResource("RectangleShape2D_7xd8n")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
