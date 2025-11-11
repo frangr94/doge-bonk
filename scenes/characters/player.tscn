@@ -1,8 +1,7 @@
-[gd_scene load_steps=53 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=47 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
-[ext_resource type="Texture2D" uid="uid://c8f1gtohskdqk" path="res://assets/sprites/knight.png" id="2_yewv4"]
 [ext_resource type="AudioStream" uid="uid://r63l03x6smqe" path="res://assets/sounds/energy_sword_slash.mp3" id="4_kqtwu"]
 [ext_resource type="AudioStream" uid="uid://blt81iymc7r11" path="res://assets/sounds/hurt.wav" id="6_kqtwu"]
 [ext_resource type="PackedScene" uid="uid://cuxw63vq3svsf" path="res://scenes/unlock/interacting_component.tscn" id="7_6eyoc"]
@@ -39,26 +38,6 @@ region = Rect2(64, 128, 32, 32)
 atlas = ExtResource("2_kqtwu")
 region = Rect2(96, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j8g38"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(0, 224, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tswxa"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(32, 224, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aqa0x"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(64, 224, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yhyq5"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(96, 224, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eojnx"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(64, 192, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpnd8"]
 atlas = ExtResource("2_kqtwu")
 region = Rect2(0, 0, 32, 32)
@@ -79,21 +58,21 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("2_kqtwu")
 region = Rect2(0, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rfou0"]
-atlas = ExtResource("2_yewv4")
+[sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
+atlas = ExtResource("2_kqtwu")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vkt2s"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_eojnx"]
+atlas = ExtResource("2_kqtwu")
+region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ux5t"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8g38"]
+atlas = ExtResource("2_kqtwu")
+region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvr6b"]
-atlas = ExtResource("2_yewv4")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_tswxa"]
+atlas = ExtResource("2_kqtwu")
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a2luo"]
 atlas = ExtResource("2_kqtwu")
@@ -197,31 +176,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j8g38")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tswxa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aqa0x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yhyq5")
-}],
-"loop": true,
-"name": &"death",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eojnx")
-}],
-"loop": true,
-"name": &"hit",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_rpnd8")
 }, {
 "duration": 1.0,
@@ -247,16 +201,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rfou0")
+"texture": SubResource("AtlasTexture_atpat")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vkt2s")
+"texture": SubResource("AtlasTexture_eojnx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6ux5t")
+"texture": SubResource("AtlasTexture_j8g38")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lvr6b")
+"texture": SubResource("AtlasTexture_tswxa")
 }],
 "loop": true,
 "name": &"kamehameha",
@@ -366,8 +320,8 @@ script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"jump"
-frame_progress = 1.0
+animation = &"kamehameha"
+frame_progress = 0.2724617
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 32

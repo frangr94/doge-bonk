@@ -16,7 +16,8 @@ const JUMP_VELOCITY = -300.0
 # check if player is attacking
 var isAttacking = false
 var canAttack = true
-const ATTACK_COOLDOWN := 0.4  # seconds between attacks
+const ATTACK_COOLDOWN := 0.5  # seconds between attacks
+
 
 # check if player is rolling
 var isDashing = false
@@ -101,22 +102,25 @@ func _physics_process(delta: float) -> void:
 		var direction := Input.get_axis("move_left", "move_right")
 
 		if direction > 0:
-			animated_sprite_2d.flip_h = false
-			collision_shape_2d.position = Vector2(10, 0)
-			kamehameha_position.scale.x = 1
-			kamehameha_position.position = Vector2(4, 2)
-			attack.scale.x = 1
-			attack.position = Vector2(10,0)
+			if abs(velocity.x) > 10 and not isAttacking:
+				animated_sprite_2d.flip_h = false
+				collision_shape_2d.position = Vector2(10, 0)
+				kamehameha_position.scale.x = 1
+				kamehameha_position.position = Vector2(4, 2)
+				attack.scale.x = 1
+				attack.position = Vector2(10,0)
 		elif direction < 0:
-			animated_sprite_2d.flip_h = true
-			collision_shape_2d.position = Vector2(-10, 0)
-			kamehameha_position.scale.x = -1
-			kamehameha_position.position = Vector2(-4, 2)
-			attack.scale.x = -1
-			attack.position = Vector2(-10,0)
+			if abs(velocity.x) > 10 and not isAttacking:
+				animated_sprite_2d.flip_h = true
+				collision_shape_2d.position = Vector2(-10, 0)
+				kamehameha_position.scale.x = -1
+				kamehameha_position.position = Vector2(-4, 2)
+				attack.scale.x = -1
+				attack.position = Vector2(-10,0)
 
 		if direction !=0:
-			velocity.x = direction * SPEED
+			var target_speed := direction * SPEED
+			velocity.x = move_toward(velocity.x, target_speed, SPEED * delta * 10)
 			animated_sprite_2d.play("run")
 		else:
 			velocity.x = 0
