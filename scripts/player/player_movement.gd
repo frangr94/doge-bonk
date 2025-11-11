@@ -34,7 +34,10 @@ var jump_count = 0
 var isShooting = false
 
 func _ready():
-	global_position = SaveLoad.SaveFileData.player_position
+	if SaveLoad.SaveFileData.player_position:
+		global_position = SaveLoad.SaveFileData.player_position
+	else:
+		global_position = Vector2(-1140,80)
 
 func get_hurt():
 	animated_sprite_2d.play("hit")

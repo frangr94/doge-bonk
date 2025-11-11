@@ -11,5 +11,4 @@ func _ready() -> void:
 func _on_interact():
 	DialogueManager.show_dialogue_balloon(MERLIN_INTRODUCTION)
 	static_body_2d.queue_free()
-	
 	pass
