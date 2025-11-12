@@ -1,10 +1,12 @@
-[gd_scene load_steps=47 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=49 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
 [ext_resource type="AudioStream" uid="uid://r63l03x6smqe" path="res://assets/sounds/energy_sword_slash.mp3" id="4_kqtwu"]
+[ext_resource type="PackedScene" uid="uid://birkq74fidvh" path="res://scenes/particles/player/jump.tscn" id="6_6eyoc"]
 [ext_resource type="AudioStream" uid="uid://blt81iymc7r11" path="res://assets/sounds/hurt.wav" id="6_kqtwu"]
 [ext_resource type="PackedScene" uid="uid://cuxw63vq3svsf" path="res://scenes/unlock/interacting_component.tscn" id="7_6eyoc"]
+[ext_resource type="PackedScene" uid="uid://y477wvbvi1we" path="res://scenes/particles/player/attack.tscn" id="7_eojnx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6eyoc"]
 atlas = ExtResource("2_kqtwu")
@@ -325,7 +327,7 @@ animation = &"kamehameha"
 frame_progress = 0.2724617
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
-collision_layer = 544
+collision_layer = 1568
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
@@ -352,3 +354,8 @@ position = Vector2(10, 0)
 sprite_frames = SubResource("SpriteFrames_yyjep")
 frame = 3
 frame_progress = 1.0
+
+[node name="jump" parent="." instance=ExtResource("6_6eyoc")]
+position = Vector2(0, 12)
+
+[node name="attack_particle" parent="." instance=ExtResource("7_eojnx")]
