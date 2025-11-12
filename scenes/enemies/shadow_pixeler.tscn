@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfewry10rw70c"]
+[gd_scene load_steps=13 format=3 uid="uid://cfewry10rw70c"]
 
 [ext_resource type="Script" uid="uid://bhdr4uh5vwjrq" path="res://scripts/enemies/shadow_pixeler.gd" id="1_jvxqa"]
 [ext_resource type="Texture2D" uid="uid://t0px67wm2e6v" path="res://assets/sprites/enemies_tutorial.png" id="1_mdauh"]
 [ext_resource type="PackedScene" uid="uid://c2t37yu8gywy3" path="res://scenes/events/killzone.tscn" id="4_l1gb7"]
 [ext_resource type="AudioStream" uid="uid://bre8pxdjj6vjc" path="res://assets/sounds/power_up.wav" id="4_niev6"]
+[ext_resource type="PackedScene" uid="uid://c1q3ty6hji11a" path="res://scenes/particles/slash_explosion_pixeler.tscn" id="5_l1gb7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_niev6"]
 atlas = ExtResource("1_mdauh")
@@ -82,6 +83,8 @@ collision_mask = 256
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(1.5, 2)
 shape = SubResource("RectangleShape2D_7xd8n")
+
+[node name="slash_explosion_pixeler" parent="." instance=ExtResource("5_l1gb7")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

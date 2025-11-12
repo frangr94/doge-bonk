@@ -7,22 +7,30 @@ extends Area2D
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var collision_shape_2d: CollisionShape2D = $killzone3/CollisionShape2D
+@onready var slash_explosion_pixeler_big: CPUParticles2D = $slash_explosion_pixeler_big
 
 # properties
 var SPEED = 50
 var direction = 1
 var hp = 2
 
+func _ready() -> void:
+	if MinibossManager.pixeler_big_tutorial_defeated == false:
+		pass
+	else:
+		queue_free()
+
 func _on_area_entered(area: Area2D) -> void:
 	# take sword damage
 	if area.is_in_group("sword"):
 		audio_stream_player.play()
 		animated_sprite_2d.play("hit")
+		slash_explosion_pixeler_big.emitting = true
 		collision_shape_2d.set_deferred("disabled", true)
 		await animated_sprite_2d.animation_finished
 		await audio_stream_player.finished
 		collision_shape_2d.set_deferred("disabled", false)
-		#hp -= 1
+		hp -= 1
 		animated_sprite_2d.play("run")
 
 # take kamehameha damage
@@ -44,5 +52,6 @@ func _process(delta: float) -> void:
 	
 	# death
 	if hp <= 0:
-		killzone_3.queue_free()
+		MinibossManager.pixeler_big_tutorial_defeated = true
+		SaveLoad.SaveFileData.pixeler_big_tutorial_defeated = true
 		queue_free()

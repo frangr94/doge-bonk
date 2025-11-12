@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var kamehameha_position: Marker2D = $kamehameha_position
 @onready var attack: AnimatedSprite2D = $attack
 
+
 # running and jump speed
 const SPEED = 210
 const JUMP_VELOCITY = -300.0
@@ -16,7 +17,7 @@ const JUMP_VELOCITY = -300.0
 # check if player is attacking
 var isAttacking = false
 var canAttack = true
-const ATTACK_COOLDOWN := 0.5  # seconds between attacks
+const ATTACK_COOLDOWN := 0.3  # seconds between attacks
 
 
 # check if player is rolling
@@ -85,6 +86,7 @@ func _physics_process(delta: float) -> void:
 		attack.play("default")
 		sword_slash_sound.play()
 		$attack_area/CollisionShape2D.disabled = false
+	
 		isAttacking = false
 		await get_tree().create_timer(ATTACK_COOLDOWN).timeout
 		canAttack = true

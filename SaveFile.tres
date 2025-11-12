@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_j2dgk")
+attack_unlock = true
 player_position = Vector2(-128, 32)
+pixeler_big_tutorial_defeated = true
