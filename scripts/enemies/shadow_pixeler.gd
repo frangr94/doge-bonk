@@ -8,6 +8,7 @@ extends Area2D
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var collision_shape_2d: CollisionShape2D = $killzone/CollisionShape2D
+@onready var slash_explosion_pixeler: CPUParticles2D = $slash_explosion_pixeler
 
 # properties
 var SPEED = 50
@@ -19,11 +20,12 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("sword"):
 		audio_stream_player.play()
 		animated_sprite_2d.play("hit")
+		slash_explosion_pixeler.emitting = true
 		collision_shape_2d.set_deferred("disabled", true)
 		await animated_sprite_2d.animation_finished
 		await audio_stream_player.finished
 		collision_shape_2d.set_deferred("disabled", false)
-		#hp -= 1
+		hp -= 1
 		animated_sprite_2d.play("run")
 
 # take kamehameha damage

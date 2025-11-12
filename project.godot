@@ -21,6 +21,7 @@ GameManager="*res://scripts/global/game_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 CharacterSave="*res://scripts/global/SaveData.gd"
 SaveLoad="*res://scripts/global/SaveLoad.gd"
+MinibossManager="*res://scripts/global/miniboss_manager.gd"
 
 [dialogue_manager]
 

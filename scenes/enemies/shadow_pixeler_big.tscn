@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlmdq5f372df0"]
+[gd_scene load_steps=13 format=3 uid="uid://dlmdq5f372df0"]
 
 [ext_resource type="Script" uid="uid://b2mehaag0d225" path="res://scripts/enemies/shadow_pixeler_big.gd" id="1_vn3ff"]
 [ext_resource type="Texture2D" uid="uid://t0px67wm2e6v" path="res://assets/sprites/enemies_tutorial.png" id="2_cnfkx"]
+[ext_resource type="PackedScene" uid="uid://dwyevedemwf1f" path="res://scenes/particles/slash_explosion_pixeler_big.tscn" id="3_6tw8v"]
 [ext_resource type="AudioStream" uid="uid://bre8pxdjj6vjc" path="res://assets/sounds/power_up.wav" id="3_klbhl"]
 [ext_resource type="PackedScene" uid="uid://bvt87cq4xwraj" path="res://scenes/events/killzonex3.tscn" id="4_t4taa"]
 
@@ -62,6 +63,8 @@ sprite_frames = SubResource("SpriteFrames_l1gb7")
 animation = &"hit"
 autoplay = "run"
 frame_progress = 1.0
+
+[node name="slash_explosion_pixeler_big" parent="." instance=ExtResource("3_6tw8v")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 4.5)
