@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://l3qvwh0efoas"]
+
+[ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="1_f6h00"]
+[ext_resource type="Script" uid="uid://cg85x8xels1mp" path="res://scripts/terrain/hit_bouncer.gd" id="1_t41y2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t41y2"]
+radius = 20.024984
+
+[node name="hit_bouncer" type="Area2D" groups=["sword"]]
+collision_layer = 1025
+collision_mask = 1025
+script = ExtResource("1_t41y2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f6h00")
+region_enabled = true
+region_rect = Rect2(144, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t41y2")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

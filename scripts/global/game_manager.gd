@@ -6,6 +6,10 @@ var attack_unlock: bool
 var dash_unlock: bool
 var double_jump_unlock: bool
 var kamehameha_unlock: bool
+var bounce_unlock: bool
+
+
+var jump_count = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +22,7 @@ func _ready() -> void:
 	dash_unlock = SaveLoad.SaveFileData.dash_unlock
 	double_jump_unlock = SaveLoad.SaveFileData.double_jump_unlock
 	kamehameha_unlock = SaveLoad.SaveFileData.kamehameha_unlock
+	bounce_unlock = SaveLoad.SaveFileData.bounce_unlock
 	print("GameManager: -> ready")
 	print("hp: "+ str(player_hp))
 	print("roll_unlock: "+ str(dash_unlock))

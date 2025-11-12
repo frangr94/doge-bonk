@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var kamehameha = preload("uid://cvpm5nwrr1npl")
 @onready var kamehameha_position: Marker2D = $kamehameha_position
 @onready var attack: AnimatedSprite2D = $attack
+@onready var jump: CPUParticles2D = $jump
+@onready var attack_particle: CPUParticles2D = $attack_particle
 
 
 # running and jump speed
@@ -29,8 +31,7 @@ const DASH_COOLDOWN = 0.5 # seconds
 
 # double jump controller
 var MAX_JUMPS = 1
-var jump_count = 0
-
+var jump_count = GameManager.jump_count
 # kamahameha controller
 var isShooting = false
 
@@ -39,6 +40,9 @@ func _ready():
 		global_position = SaveLoad.SaveFileData.player_position
 	else:
 		global_position = Vector2(-1140,80)
+
+func bounce(strenght: float = 300):
+	velocity.y = -strenght
 
 func get_hurt():
 	animated_sprite_2d.play("hit")
@@ -75,15 +79,24 @@ func _physics_process(delta: float) -> void:
 	else:
 		MAX_JUMPS = 1
 
-	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
+	if Input.is_action_just_pressed("jump") and GameManager.jump_count < MAX_JUMPS:
+		if GameManager.jump_count == 1:
+			jump.emitting = true
+			velocity.y = JUMP_VELOCITY
+			GameManager.jump_count += 1
+		elif GameManager.jump_count == 0:
+			velocity.y = JUMP_VELOCITY
+			GameManager.jump_count +=1
+	elif Input.is_action_just_pressed("jump") and is_on_floor() and GameManager.jump_count >= MAX_JUMPS:
+		GameManager.jump_count = 0
 		velocity.y = JUMP_VELOCITY
-		jump_count += 1
-
+		GameManager.jump_count += 1
 	# attack controller
 	if Input.is_action_just_pressed("attack") and not isAttacking and canAttack and not isDashing and GameManager.attack_unlock == true:
 		isAttacking = true
 		canAttack = false
 		attack.play("default")
+		attack_particle.emitting = true
 		sword_slash_sound.play()
 		$attack_area/CollisionShape2D.disabled = false
 	
@@ -114,6 +127,7 @@ func _physics_process(delta: float) -> void:
 				kamehameha_position.position = Vector2(4, 2)
 				attack.scale.x = 1
 				attack.position = Vector2(10,0)
+				attack_particle.scale.x = 1
 		elif direction < 0:
 			if abs(velocity.x) > 10 and not isAttacking:
 				animated_sprite_2d.flip_h = true
@@ -122,6 +136,7 @@ func _physics_process(delta: float) -> void:
 				kamehameha_position.position = Vector2(-4, 2)
 				attack.scale.x = -1
 				attack.position = Vector2(-10,0)
+				attack_particle.scale.x = -1
 
 		if direction !=0:
 			var target_speed := direction * SPEED
