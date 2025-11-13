@@ -172,7 +172,10 @@ func _physics_process(delta: float) -> void:
 		if direction != 0 && is_on_floor():
 			animated_sprite_2d.play("run")
 			
-		elif velocity.y !=0:
+		elif velocity.y !=0 && direction == 0:
+			animated_sprite_2d.play("jump_vertical")
+			
+		elif velocity.y !=0 && direction !=0:
 			animated_sprite_2d.play("jump")
 		
 		else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=54 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
@@ -56,6 +56,22 @@ region = Rect2(192, 192, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_m38kj"]
 atlas = ExtResource("3_eojnx")
 region = Rect2(224, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfou0"]
+atlas = ExtResource("3_eojnx")
+region = Rect2(128, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkt2s"]
+atlas = ExtResource("3_eojnx")
+region = Rect2(160, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ux5t"]
+atlas = ExtResource("3_eojnx")
+region = Rect2(192, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvr6b"]
+atlas = ExtResource("3_eojnx")
+region = Rect2(224, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpnd8"]
 atlas = ExtResource("3_eojnx")
@@ -196,6 +212,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rfou0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkt2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ux5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvr6b")
+}],
+"loop": true,
+"name": &"jump_vertical",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rpnd8")
 }, {
 "duration": 1.0,
@@ -319,8 +352,8 @@ script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"jump"
-frame_progress = 1.0
+animation = &"jump_vertical"
+frame_progress = 0.38182104
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 1568
