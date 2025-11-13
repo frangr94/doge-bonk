@@ -313,8 +313,8 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 z_index = 11
-collision_layer = 248
-collision_mask = 240
+collision_layer = 2296
+collision_mask = 2288
 script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

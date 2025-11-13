@@ -1,7 +1,8 @@
-[gd_scene load_steps=45 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=46 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
+[ext_resource type="PackedScene" uid="uid://cs1simwxgta6e" path="res://scenes/levels/checkpoint.tscn" id="4_x7mr2"]
 [ext_resource type="PackedScene" uid="uid://cfewry10rw70c" path="res://scenes/enemies/shadow_pixeler.tscn" id="6_7ac3l"]
 [ext_resource type="Script" uid="uid://dde8acrpb70v1" path="res://scripts/barriers/tutorial_player_stopper.gd" id="8_hux2q"]
 [ext_resource type="PackedScene" uid="uid://bk1e141aawptk" path="res://scenes/enemies/enemy_stopper_horizontal.tscn" id="9_4a02d"]
@@ -312,7 +313,7 @@ position = Vector2(-442, -80)
 position = Vector2(-518, -80)
 
 [node name="StaticBody2D8" parent="enemies/enemy_colliders" instance=ExtResource("9_4a02d")]
-position = Vector2(-650, -80)
+position = Vector2(-638, -80)
 
 [node name="shadow_pixeler" parent="enemies" instance=ExtResource("6_7ac3l")]
 position = Vector2(-42, -94)
@@ -531,6 +532,12 @@ script = ExtResource("26_f1d85")
 [node name="self_chip_shard3" parent="." instance=ExtResource("24_gwe3r")]
 position = Vector2(778, 69)
 script = ExtResource("27_4rqrb")
+
+[node name="checkpoint" parent="." instance=ExtResource("4_x7mr2")]
+position = Vector2(-344, 32)
+
+[node name="checkpoint2" parent="." instance=ExtResource("4_x7mr2")]
+position = Vector2(-616, -240)
 
 [connection signal="body_entered" from="platforms/memory_platform/platform_collider" to="platforms/memory_platform/platform_collider" method="_on_body_entered"]
 [connection signal="body_entered" from="platforms/AnimatableBody2D2/platform_collider" to="platforms/AnimatableBody2D2/platform_collider" method="_on_body_entered"]

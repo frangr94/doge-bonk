@@ -7,6 +7,7 @@ func _ready() -> void:
 
 func _on_interact():
 	print("Save game")
+	print(get_tree().current_scene.get_path())
 	SaveLoad.SaveFileData.max_hp = GameManager.max_hp
 	SaveLoad.SaveFileData.player_hp = GameManager.player_hp
 	SaveLoad.SaveFileData.attack_unlock = GameManager.attack_unlock
