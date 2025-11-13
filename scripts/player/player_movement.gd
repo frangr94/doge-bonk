@@ -47,16 +47,17 @@ func bounce(strenght: float = 300):
 func get_hurt():
 	animated_sprite_2d.play("hit")
 
+# dash function
 func start_dash() -> void:
 	if GameManager.dash_unlock == true and canDash == true:
 		canDash = false
 		isDashing = true
 		animated_sprite_2d.play("dash")
 		player.set_collision_layer_value(7, false) # get iframes
-
 		# freeze vertical velocity to make a straightline while dashing
 		velocity.y = 0
 
+		# control dash speed and lenght
 		if animated_sprite_2d.flip_h:
 			velocity.x = -SPEED * 1.5
 		else:
@@ -91,6 +92,8 @@ func _physics_process(delta: float) -> void:
 		GameManager.jump_count = 0
 		velocity.y = JUMP_VELOCITY
 		GameManager.jump_count += 1
+
+
 	# attack controller
 	if Input.is_action_just_pressed("attack") and not isAttacking and canAttack and not isDashing and GameManager.attack_unlock == true:
 		isAttacking = true
@@ -118,6 +121,12 @@ func _physics_process(delta: float) -> void:
 
 	else:
 		var direction := Input.get_axis("move_left", "move_right")
+		var deadzone = 0.5
+		
+		
+		# controller deadzone
+		if abs(direction) < deadzone:
+			direction = 0
 
 		if direction > 0:
 			if abs(velocity.x) > 10 and not isAttacking:
