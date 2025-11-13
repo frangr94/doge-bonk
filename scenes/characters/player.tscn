@@ -43,35 +43,35 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g66nw"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(128, 192, 32, 32)
+region = Rect2(128, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8g38"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(160, 192, 32, 32)
+region = Rect2(160, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tswxa"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(192, 192, 32, 32)
+region = Rect2(192, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m38kj"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(224, 192, 32, 32)
+region = Rect2(224, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfou0"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(128, 224, 32, 32)
+region = Rect2(128, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkt2s"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(160, 224, 32, 32)
+region = Rect2(160, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ux5t"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(192, 224, 32, 32)
+region = Rect2(192, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvr6b"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(224, 224, 32, 32)
+region = Rect2(224, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpnd8"]
 atlas = ExtResource("3_eojnx")
@@ -353,7 +353,6 @@ script = ExtResource("1_76oj4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
 animation = &"jump_vertical"
-frame_progress = 0.38182104
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 1568
@@ -376,6 +375,9 @@ stream = ExtResource("6_kqtwu")
 [node name="interacting_component" parent="." instance=ExtResource("7_6eyoc")]
 
 [node name="kamehameha_position" type="Marker2D" parent="."]
+position = Vector2(4, 2)
+
+[node name="shuriken_position" type="Marker2D" parent="."]
 position = Vector2(4, 2)
 
 [node name="attack" type="AnimatedSprite2D" parent="."]
