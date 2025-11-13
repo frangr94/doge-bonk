@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var attack: AnimatedSprite2D = $attack
 @onready var jump: CPUParticles2D = $jump
 @onready var attack_particle: CPUParticles2D = $attack_particle
+@onready var coyote_time: Timer = $coyote_time
 
 
 # running and jump speed
@@ -92,6 +93,7 @@ func _physics_process(delta: float) -> void:
 		GameManager.jump_count = 0
 		velocity.y = JUMP_VELOCITY
 		GameManager.jump_count += 1
+	
 
 
 	# attack controller
@@ -150,12 +152,21 @@ func _physics_process(delta: float) -> void:
 		if direction !=0:
 			var target_speed := direction * SPEED
 			velocity.x = move_toward(velocity.x, target_speed, SPEED * delta * 10)
-			animated_sprite_2d.play("run")
+
 		else:
 			velocity.x = 0
 			if not isAttacking and is_on_floor():
 				#velocity.x = move_toward(velocity.x, 0, SPEED)
 				animated_sprite_2d.play("idle")
+		
+		if direction != 0 && is_on_floor():
+			animated_sprite_2d.play("run")
+			
+		elif velocity.y !=0:
+			animated_sprite_2d.play("jump")
+		
+		else:
+			animated_sprite_2d.play("idle")
 
 		# kamehameha
 		if Input.is_action_just_pressed("shoot") and not isAttacking and GameManager.kamehameha_unlock == true and not isShooting:
@@ -166,9 +177,9 @@ func _physics_process(delta: float) -> void:
 			get_parent().add_child(k)
 			await get_tree().create_timer(2).timeout
 			isShooting = false
-
+		
 	move_and_slide()
-
+	
 	# reset jumps
 	if is_on_floor():
 		jump_count = 0
