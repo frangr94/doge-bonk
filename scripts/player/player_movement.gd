@@ -66,7 +66,10 @@ func start_dash() -> void:
 	if GameManager.dash_unlock == true and canDash == true:
 		canDash = false
 		isDashing = true
-		animated_sprite_2d.play("dash")
+		if is_on_floor():
+			animated_sprite_2d.play("dash")
+		else:
+			animated_sprite_2d.play("air_dash")
 		player.set_collision_layer_value(7, false) # get iframes
 		# freeze vertical velocity to make a straightline while dashing
 		velocity.y = 0

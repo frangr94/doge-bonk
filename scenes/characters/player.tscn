@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=58 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
@@ -9,21 +9,37 @@
 [ext_resource type="PackedScene" uid="uid://cuxw63vq3svsf" path="res://scenes/unlock/interacting_component.tscn" id="7_6eyoc"]
 [ext_resource type="PackedScene" uid="uid://y477wvbvi1we" path="res://scenes/particles/player/attack.tscn" id="7_eojnx"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyjep"]
+atlas = ExtResource("3_eojnx")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aj6e"]
+atlas = ExtResource("3_eojnx")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7k00"]
+atlas = ExtResource("3_eojnx")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnpl6"]
+atlas = ExtResource("3_eojnx")
+region = Rect2(96, 224, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_eojnx"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(0, 128, 32, 32)
+region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgnko"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(32, 128, 32, 32)
+region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vyk4"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(64, 128, 32, 32)
+region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l4js"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(96, 128, 32, 32)
+region = Rect2(96, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jk2m4"]
 atlas = ExtResource("3_eojnx")
@@ -159,6 +175,23 @@ region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qgnko"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyjep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aj6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7k00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnpl6")
+}],
+"loop": false,
+"name": &"air_dash",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eojnx")
@@ -352,7 +385,7 @@ script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"jump_vertical"
+animation = &"dash"
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 1568
@@ -381,7 +414,7 @@ position = Vector2(4, 2)
 position = Vector2(4, 2)
 
 [node name="attack" type="AnimatedSprite2D" parent="."]
-position = Vector2(10, 0)
+position = Vector2(52, -22)
 sprite_frames = SubResource("SpriteFrames_yyjep")
 frame = 3
 frame_progress = 1.0
