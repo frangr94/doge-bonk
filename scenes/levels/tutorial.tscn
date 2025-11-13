@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=45 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
@@ -23,6 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://br0xwtyky3mkg" path="res://scenes/unlock/sword_unlocker.tscn" id="20_cyy7t"]
 [ext_resource type="Script" uid="uid://dktw3sfvxf4xu" path="res://scripts/platforms/tutorial/memory_platform_3.gd" id="21_1x4hw"]
 [ext_resource type="PackedScene" uid="uid://l3qvwh0efoas" path="res://scenes/terrain/hit_bouncer.tscn" id="23_n1gr0"]
+[ext_resource type="PackedScene" uid="uid://bvjk63njsli6c" path="res://scenes/items/self_chip_shard.tscn" id="24_gwe3r"]
+[ext_resource type="Script" uid="uid://bhuwtkmjmmrw4" path="res://scripts/items/chip_shards/self_chip_shard_1.gd" id="25_m6rdq"]
+[ext_resource type="Script" uid="uid://bv1gbxojxcr5f" path="res://scripts/items/chip_shards/self_chip_shard_2.gd" id="26_f1d85"]
+[ext_resource type="Script" uid="uid://pg8krvsvyaif" path="res://scripts/items/chip_shards/self_chip_shard_3.gd" id="27_4rqrb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irnc0"]
 texture = ExtResource("2_uu0hj")
@@ -515,6 +519,18 @@ position = Vector2(903, 7)
 
 [node name="hit_bouncer3" parent="." instance=ExtResource("23_n1gr0")]
 position = Vector2(991, 7)
+
+[node name="self_chip_shard" parent="." instance=ExtResource("24_gwe3r")]
+position = Vector2(856, 70)
+script = ExtResource("25_m6rdq")
+
+[node name="self_chip_shard2" parent="." instance=ExtResource("24_gwe3r")]
+position = Vector2(815, 69)
+script = ExtResource("26_f1d85")
+
+[node name="self_chip_shard3" parent="." instance=ExtResource("24_gwe3r")]
+position = Vector2(778, 69)
+script = ExtResource("27_4rqrb")
 
 [connection signal="body_entered" from="platforms/memory_platform/platform_collider" to="platforms/memory_platform/platform_collider" method="_on_body_entered"]
 [connection signal="body_entered" from="platforms/AnimatableBody2D2/platform_collider" to="platforms/AnimatableBody2D2/platform_collider" method="_on_body_entered"]

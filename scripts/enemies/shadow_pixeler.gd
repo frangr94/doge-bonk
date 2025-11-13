@@ -13,7 +13,7 @@ extends Area2D
 # properties
 var SPEED = 50
 var direction = 1
-var hp = 2
+var hp = 1
 
 func _on_area_entered(area: Area2D) -> void:
 	# take sword damage

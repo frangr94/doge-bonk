@@ -22,6 +22,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 CharacterSave="*res://scripts/global/SaveData.gd"
 SaveLoad="*res://scripts/global/SaveLoad.gd"
 MinibossManager="*res://scripts/global/miniboss_manager.gd"
+SelfShardCounter="*res://scripts/unlock/self_shard_counter.gd"
 
 [dialogue_manager]
 
