@@ -521,7 +521,7 @@ position = Vector2(903, 7)
 position = Vector2(991, 7)
 
 [node name="self_chip_shard" parent="." instance=ExtResource("24_gwe3r")]
-position = Vector2(856, 70)
+position = Vector2(664, 37)
 script = ExtResource("25_m6rdq")
 
 [node name="self_chip_shard2" parent="." instance=ExtResource("24_gwe3r")]

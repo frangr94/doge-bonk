@@ -9,6 +9,8 @@ extends Area2D
 @onready var collision_shape_2d: CollisionShape2D = $killzone3/CollisionShape2D
 @onready var slash_explosion_pixeler_big: CPUParticles2D = $slash_explosion_pixeler_big
 
+@onready var self_chip_shard: Area2D = $"../../self_chip_shard"
+
 # properties
 var SPEED = 50
 var direction = 1
