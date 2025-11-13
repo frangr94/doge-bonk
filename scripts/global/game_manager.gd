@@ -1,6 +1,6 @@
 extends Node
 
-var max_hp: int = 3
+var max_hp: int
 var player_hp: int
 var attack_unlock: bool
 var dash_unlock: bool
@@ -17,7 +17,7 @@ func _ready() -> void:
 	# ADD LOAD
 	SaveLoad._load()
 	max_hp = SaveLoad.SaveFileData.max_hp
-	player_hp = SaveLoad.SaveFileData.player_hp
+	player_hp = SaveLoad.SaveFileData.max_hp
 	attack_unlock = SaveLoad.SaveFileData.attack_unlock
 	dash_unlock = SaveLoad.SaveFileData.dash_unlock
 	double_jump_unlock = SaveLoad.SaveFileData.double_jump_unlock
@@ -25,6 +25,7 @@ func _ready() -> void:
 	bounce_unlock = SaveLoad.SaveFileData.bounce_unlock
 	print("GameManager: -> ready")
 	print("hp: "+ str(player_hp))
+	print("max_hp: " +str(max_hp))
 	print("roll_unlock: "+ str(dash_unlock))
 	print("double_jump_unlock: "+ str(double_jump_unlock) )
 	print("attack_unlock: " + str(attack_unlock))
@@ -38,15 +39,13 @@ func loose_hp():
 	emit_signal("health_changed")
 
 func port_heal():
-	player_hp = max_hp
+	player_hp = SaveLoad.SaveFileData.max_hp
 	emit_signal("health_changed")
+	print(player_hp)
 	
 func SaveGame():
 		SaveLoad.SaveFileData.max_hp = GameManager.max_hp
-		if player_hp <= 0:
-			SaveLoad.SaveFileData.player_hp = GameManager.max_hp
-		else:
-			SaveLoad.SaveFileData.player_hp = GameManager.player_hp
+		SaveLoad.SaveFileData.player_hp = GameManager.player_hp
 		SaveLoad.SaveFileData.attack_unlock = GameManager.attack_unlock
 		SaveLoad.SaveFileData.dash_unlock = GameManager.dash_unlock
 		SaveLoad.SaveFileData.double_jump_unlock = GameManager.double_jump_unlock
@@ -57,6 +56,7 @@ func SaveGame():
 
 func _process(_delta: float) -> void:
 	if player_hp <= 0:
+		player_hp = SaveLoad.SaveFileData.max_hp
 		SaveGame()
 		get_tree().change_scene_to_file("res://scenes/ui/death_screen.tscn")
 		

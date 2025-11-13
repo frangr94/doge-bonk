@@ -20,3 +20,19 @@ class_name SaveDataResource
 
 # barriers
 @export var tutorial_barrier_merlin: bool = true
+
+# items
+# chip shards
+@export var self_shard_amount: int = 0
+@export var chip_shard_1: bool = false
+@export var chip_shard_2: bool = false
+@export var chip_shard_3: bool = false
+@export var chip_shard_4: bool = false
+@export var chip_shard_5: bool = false
+@export var chip_shard_6: bool = false
+@export var chip_shard_7: bool = false
+@export var chip_shard_8: bool = false
+@export var chip_shard_9: bool = false
+@export var chip_shard_10: bool = false
+@export var chip_shard_11: bool = false
+@export var chip_shard_12: bool = false

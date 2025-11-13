@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvjk63njsli6c"]
+
+[ext_resource type="Texture2D" uid="uid://cesaioig6wlv2" path="res://assets/sprites/self_chip_shard.png" id="1_vatav"]
+[ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_h832g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1a71n"]
+size = Vector2(28, 27)
+
+[node name="self_chip_shard" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vatav")
+region_enabled = true
+region_rect = Rect2(6, 7, 20, 21)
+
+[node name="interactable" parent="." instance=ExtResource("2_h832g")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_1a71n")
