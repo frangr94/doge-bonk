@@ -355,7 +355,3 @@ frame_progress = 1.0
 position = Vector2(0, 12)
 
 [node name="attack_particle" parent="." instance=ExtResource("7_eojnx")]
-
-[node name="coyote_time" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true

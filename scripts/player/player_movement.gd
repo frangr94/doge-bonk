@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var attack: AnimatedSprite2D = $attack
 @onready var jump: CPUParticles2D = $jump
 @onready var attack_particle: CPUParticles2D = $attack_particle
-@onready var coyote_time: Timer = $coyote_time
+@onready var coyote_time: float = 0.125
 
 
 # running and jump speed
@@ -33,6 +33,7 @@ const DASH_COOLDOWN = 0.5 # seconds
 # double jump controller
 var MAX_JUMPS = 1
 var jump_count = GameManager.jump_count
+var can_jump: bool = true
 # kamahameha controller
 var isShooting = false
 
@@ -47,6 +48,13 @@ func bounce(strenght: float = 300):
 
 func get_hurt():
 	animated_sprite_2d.play("hit")
+
+func start_jump():
+	velocity.y = JUMP_VELOCITY
+	GameManager.jump_count += 1
+
+func coyote_timer():
+	can_jump = false
 
 # dash function
 func start_dash() -> void:
@@ -73,7 +81,12 @@ func start_dash() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and isDashing == false:
+		if can_jump:
+			get_tree().create_timer(coyote_time).timeout.connect(coyote_timer)
 		velocity += get_gravity() * delta
+		
+	else:
+		can_jump = true
 
 	# jump controller
 	if GameManager.double_jump_unlock == true:
@@ -84,15 +97,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and GameManager.jump_count < MAX_JUMPS:
 		if GameManager.jump_count == 1:
 			jump.emitting = true
-			velocity.y = JUMP_VELOCITY
-			GameManager.jump_count += 1
+			start_jump()
 		elif GameManager.jump_count == 0:
-			velocity.y = JUMP_VELOCITY
-			GameManager.jump_count +=1
-	elif Input.is_action_just_pressed("jump") and is_on_floor() and GameManager.jump_count >= MAX_JUMPS:
+			start_jump()
+	elif Input.is_action_just_pressed("jump") and can_jump and GameManager.jump_count >= MAX_JUMPS:
 		GameManager.jump_count = 0
-		velocity.y = JUMP_VELOCITY
-		GameManager.jump_count += 1
+		start_jump()
 	
 
 
@@ -183,3 +193,4 @@ func _physics_process(delta: float) -> void:
 	# reset jumps
 	if is_on_floor():
 		jump_count = 0
+	
