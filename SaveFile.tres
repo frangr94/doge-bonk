@@ -7,6 +7,6 @@ script = ExtResource("1_j2dgk")
 attack_unlock = true
 dash_unlock = true
 bounce_unlock = true
-player_position = Vector2(-6, -256)
+player_position = Vector2(-128, 32)
 pixeler_big_tutorial_defeated = true
 tutorial_barrier_merlin = false
