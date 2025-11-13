@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var jump: CPUParticles2D = $jump
 @onready var attack_particle: CPUParticles2D = $attack_particle
 @onready var coyote_time: float = 0.125
+@onready var shuriken = preload("uid://b811meofd7bjx")
+@onready var shuriken_position: Marker2D = $shuriken_position
 
 
 # running and jump speed
@@ -34,6 +36,8 @@ const DASH_COOLDOWN = 0.5 # seconds
 var MAX_JUMPS = 1
 var jump_count = GameManager.jump_count
 var can_jump: bool = true
+
+
 # kamahameha controller
 var isShooting = false
 
@@ -52,6 +56,7 @@ func get_hurt():
 func start_jump():
 	velocity.y = JUMP_VELOCITY
 	GameManager.jump_count += 1
+	
 
 func coyote_timer():
 	can_jump = false
@@ -79,11 +84,13 @@ func start_dash() -> void:
 		canDash = true
 
 
+
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and isDashing == false:
 		if can_jump:
 			get_tree().create_timer(coyote_time).timeout.connect(coyote_timer)
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * 0.9
 		
 	else:
 		can_jump = true
@@ -146,6 +153,7 @@ func _physics_process(delta: float) -> void:
 				collision_shape_2d.position = Vector2(10, 0)
 				kamehameha_position.scale.x = 1
 				kamehameha_position.position = Vector2(4, 2)
+				shuriken_position.scale.x = 1
 				attack.scale.x = 1
 				attack.position = Vector2(10,0)
 				attack_particle.scale.x = 1
@@ -155,6 +163,7 @@ func _physics_process(delta: float) -> void:
 				collision_shape_2d.position = Vector2(-10, 0)
 				kamehameha_position.scale.x = -1
 				kamehameha_position.position = Vector2(-4, 2)
+				shuriken_position.scale.x = -1
 				attack.scale.x = -1
 				attack.position = Vector2(-10,0)
 				attack_particle.scale.x = -1
@@ -174,6 +183,7 @@ func _physics_process(delta: float) -> void:
 			
 		elif velocity.y !=0 && direction == 0:
 			animated_sprite_2d.play("jump_vertical")
+			#animated_sprite_2d.play("jump")
 			
 		elif velocity.y !=0 && direction !=0:
 			animated_sprite_2d.play("jump")
@@ -190,6 +200,17 @@ func _physics_process(delta: float) -> void:
 			get_parent().add_child(k)
 			await get_tree().create_timer(2).timeout
 			isShooting = false
+		
+		if Input.is_action_just_pressed("projectile_shoot") and not isAttacking and not isShooting:
+			isShooting = true
+			var s = shuriken.instantiate()
+			s.global_position = shuriken_position.global_position
+			s.vel = shuriken_position.scale.x
+			get_parent().add_child(s)
+			await get_tree().create_timer(0.5).timeout
+			isShooting = false
+			
+			
 		
 	move_and_slide()
 	
