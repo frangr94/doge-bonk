@@ -49,12 +49,13 @@ var inventory_open = false
 # kamahameha controller
 var isShooting = false
 
+# respawn
 func _ready():
 	inventory.visible = false
 	if SaveLoad.SaveFileData.player_position:
 		global_position = SaveLoad.SaveFileData.player_position
 	else:
-		global_position = Vector2(-1140,80)
+		global_position = Vector2(-1140,-400)
 
 func bounce(strenght: float = 300):
 	velocity.y = -strenght
