@@ -5,12 +5,17 @@
 [resource]
 script = ExtResource("1_j2dgk")
 current_scene = "/root/tutorial"
-max_hp = 5
-player_hp = 5
+max_hp = 6
+player_hp = 6
 attack_unlock = true
 dash_unlock = true
 kamehameha_unlock = true
 bounce_unlock = true
-player_position = Vector2(-6, -256)
+player_position = Vector2(-128, 32)
 pixeler_big_tutorial_defeated = true
 tutorial_barrier_merlin = false
+self_shard_amount = 1
+chip_shard_1 = true
+chip_shard_2 = true
+chip_shard_3 = true
+tutorial_chest_1 = true

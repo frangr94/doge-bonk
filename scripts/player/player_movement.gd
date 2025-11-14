@@ -102,8 +102,10 @@ func def_gravity(velocity: Vector2):
 		return FALL_GRAVITY
 	pass
 
-
 func _physics_process(delta: float) -> void:
+	if GameManager.dialogue_stopper == true:
+		return
+
 	#################### JUMP #################################
 	if not is_on_floor() and isDashing == false:
 		if can_jump:
@@ -234,6 +236,7 @@ func _physics_process(delta: float) -> void:
 		
 
 	move_and_slide()
+
 	
 	# reset jumps
 	if is_on_floor():

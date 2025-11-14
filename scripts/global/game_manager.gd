@@ -11,6 +11,7 @@ var bounce_unlock: bool
 
 var jump_count = 0
 
+var dialogue_stopper = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
