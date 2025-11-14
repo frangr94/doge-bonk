@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=59 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://blt81iymc7r11" path="res://assets/sounds/hurt.wav" id="6_kqtwu"]
 [ext_resource type="PackedScene" uid="uid://cuxw63vq3svsf" path="res://scenes/unlock/interacting_component.tscn" id="7_6eyoc"]
 [ext_resource type="PackedScene" uid="uid://y477wvbvi1we" path="res://scenes/particles/player/attack.tscn" id="7_eojnx"]
+[ext_resource type="PackedScene" uid="uid://dleddfcd741v6" path="res://scenes/ui/inventory.tscn" id="9_qgnko"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yyjep"]
 atlas = ExtResource("3_eojnx")
@@ -423,3 +424,5 @@ frame_progress = 1.0
 position = Vector2(0, 12)
 
 [node name="attack_particle" parent="." instance=ExtResource("7_eojnx")]
+
+[node name="inventory" parent="." instance=ExtResource("9_qgnko")]

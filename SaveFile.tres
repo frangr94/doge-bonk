@@ -1,18 +1,15 @@
-[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3 uid="uid://bo41dns7yxd5a"]
 
-[ext_resource type="Script" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
+[ext_resource type="Script" uid="uid://b7o6riyd5vp5m" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
 
 [resource]
 script = ExtResource("1_j2dgk")
-max_hp = 4
-player_hp = 4
 attack_unlock = true
 dash_unlock = true
 kamehameha_unlock = true
 bounce_unlock = true
-player_position = Vector2(-6, -256)
+player_position = Vector2(-128, 32)
 pixeler_big_tutorial_defeated = true
 tutorial_barrier_merlin = false
+self_shard_amount = 1
 chip_shard_1 = true
-chip_shard_2 = true
-chip_shard_3 = true
