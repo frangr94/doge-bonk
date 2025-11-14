@@ -416,7 +416,7 @@ position = Vector2(4, 2)
 position = Vector2(4, 2)
 
 [node name="attack" type="AnimatedSprite2D" parent="."]
-position = Vector2(52, -22)
+position = Vector2(10, 0)
 sprite_frames = SubResource("SpriteFrames_yyjep")
 frame = 3
 frame_progress = 1.0

@@ -16,7 +16,6 @@ func _ready() -> void:
 
 
 func _on_interact():
-	print("self chip interact")
 	if SaveLoad.SaveFileData.self_shard_amount >= 2:
 		GameManager.max_hp += 1
 		SaveLoad.SaveFileData.max_hp += 1
@@ -30,7 +29,6 @@ func _on_interact():
 		print(SaveLoad.SaveFileData.max_hp)
 	else:
 		SaveLoad.SaveFileData.self_shard_amount += 1
-		print("has "+ str(SaveLoad.SaveFileData.self_shard_amount) + "shards" )
 		SaveLoad.SaveFileData.chip_shard_3 = true
 		GameManager.self_shard_pick()
 		SaveLoad._save()
