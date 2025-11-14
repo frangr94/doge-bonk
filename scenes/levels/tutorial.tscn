@@ -331,7 +331,7 @@ position = Vector2(-586, -94)
 [node name="shadow_pixeler3" parent="enemies" instance=ExtResource("17_l8ohl")]
 position = Vector2(417, 16)
 
-[node name="merlin" parent="." instance=ExtResource("11_uu0hj")]
+[node name="bearded_stranger" parent="." instance=ExtResource("11_uu0hj")]
 position = Vector2(-72, 36)
 
 [node name="tutorial_barrier" parent="." instance=ExtResource("10_4a02d")]
