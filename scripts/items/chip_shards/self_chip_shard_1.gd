@@ -13,7 +13,8 @@ func _ready() -> void:
 	else:
 		sprite_2d.visible = false
 		collision_shape_2d.disabled = true
-	
+
+
 func _on_interact():
 	print("self chip interact")
 	if SaveLoad.SaveFileData.self_shard_amount >= 2:
@@ -23,6 +24,7 @@ func _on_interact():
 		SaveLoad.SaveFileData.self_shard_amount = 0
 		SaveLoad.SaveFileData.chip_shard_1 = true
 		GameManager.port_heal()
+		GameManager.self_shard_pick()
 		SaveLoad._save()
 		queue_free()
 		print(SaveLoad.SaveFileData.max_hp)
@@ -30,5 +32,6 @@ func _on_interact():
 		SaveLoad.SaveFileData.self_shard_amount += 1
 		print("has "+ str(SaveLoad.SaveFileData.self_shard_amount) + "shards" )
 		SaveLoad.SaveFileData.chip_shard_1 = true
+		GameManager.self_shard_pick()
 		SaveLoad._save()
 		queue_free()

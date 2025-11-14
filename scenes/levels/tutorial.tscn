@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=45 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dt8gc8kpc8b33" path="res://scenes/characters/merlin_idle.tscn" id="11_uu0hj"]
 [ext_resource type="PackedScene" uid="uid://d856awsyxgm3" path="res://scenes/events/terrain_killzone.tscn" id="12_84vya"]
 [ext_resource type="FontFile" uid="uid://dy0h01gg66of2" path="res://assets/fonts/PixelOperator8.ttf" id="12_cw4as"]
-[ext_resource type="PackedScene" uid="uid://beoysmoa34fd1" path="res://scenes/ui/ui_gameplay.tscn" id="12_irnc0"]
 [ext_resource type="Texture2D" uid="uid://bukgwgipqi86f" path="res://assets/sprites/controls32x32.png" id="13_84vya"]
 [ext_resource type="PackedScene" uid="uid://b5sc1yb3mtpt3" path="res://scenes/platforms/memory_platform.tscn" id="14_4o3hj"]
 [ext_resource type="Script" uid="uid://rn5g3unoon8q" path="res://scripts/platforms/tutorial/memory_platform_1.gd" id="15_uy53l"]
@@ -336,8 +335,6 @@ position = Vector2(-72, 36)
 [node name="tutorial_barrier" parent="." instance=ExtResource("10_4a02d")]
 position = Vector2(-5, 197)
 script = ExtResource("8_hux2q")
-
-[node name="ui_gameplay" parent="." instance=ExtResource("12_irnc0")]
 
 [node name="terrain_killzones" type="Node" parent="."]
 

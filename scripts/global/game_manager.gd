@@ -51,12 +51,17 @@ func SaveGame():
 		SaveLoad.SaveFileData.double_jump_unlock = GameManager.double_jump_unlock
 		SaveLoad.SaveFileData.kamehameha_unlock = GameManager.kamehameha_unlock
 		SaveLoad._save()
+		
+signal pick_shard
+func self_shard_pick():
+	emit_signal("pick_shard")
+	print("signal shard pick")
 
-	
+
 
 func _process(_delta: float) -> void:
 	if player_hp <= 0:
 		player_hp = SaveLoad.SaveFileData.max_hp
 		SaveGame()
 		get_tree().change_scene_to_file("res://scenes/ui/death_screen.tscn")
-		
+	
