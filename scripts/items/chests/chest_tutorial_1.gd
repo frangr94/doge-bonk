@@ -18,14 +18,15 @@ func _on_interact():
 	if SaveLoad.SaveFileData.tutorial_chest_1 == false:
 		SaveLoad.SaveFileData.tutorial_chest_1 = true
 		SaveLoad.SaveFileData.self_shard_amount += 1
+		GameManager.self_shard_pick()
 		SaveLoad._save()
 		if SaveLoad.SaveFileData.self_shard_amount >=3:
 			SaveLoad.SaveFileData.max_hp += 1
 			SaveLoad.SaveFileData.player_hp = SaveLoad.SaveFileData.max_hp
 			GameManager.port_heal()
 			SaveLoad._save()
-
 			SaveLoad.SaveFileData.self_shard_amount = 0
+			GameManager.self_shard_pick()
 		animated_sprite.play("open")
 	else:
 		pass
