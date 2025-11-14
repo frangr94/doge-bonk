@@ -19,6 +19,11 @@ extends CharacterBody2D
 const SPEED = 210
 const JUMP_VELOCITY = -300.0
 
+# gravity
+const GRAVITY := 1000
+const FALL_GRAVITY := 400
+
+
 
 # check if player is attacking
 var isAttacking = false
@@ -90,13 +95,21 @@ func start_dash() -> void:
 		await get_tree().create_timer(DASH_COOLDOWN).timeout
 		canDash = true
 
+func def_gravity(velocity: Vector2):
+	if velocity.y < 0:
+		return GRAVITY
+	else:
+		return FALL_GRAVITY
+	pass
+
 
 func _physics_process(delta: float) -> void:
+	#################### JUMP #################################
 	if not is_on_floor() and isDashing == false:
 		if can_jump:
 			get_tree().create_timer(coyote_time).timeout.connect(coyote_timer)
-		velocity += get_gravity() * delta * 0.9
-		
+		#velocity += get_gravity() * delta * 0.9
+		velocity.y += def_gravity(velocity) * delta
 	else:
 		can_jump = true
 	# jump controller
@@ -104,9 +117,6 @@ func _physics_process(delta: float) -> void:
 		MAX_JUMPS = 2
 	else:
 		MAX_JUMPS = 1
-
-
-
 
 	if Input.is_action_just_pressed("jump") and GameManager.jump_count < MAX_JUMPS:
 		if GameManager.jump_count == 1:
@@ -118,9 +128,11 @@ func _physics_process(delta: float) -> void:
 		GameManager.jump_count = 0
 		start_jump()
 	
+	if Input.is_action_just_released("jump") and velocity.y < 0:
+		velocity.y = JUMP_VELOCITY / 3
 
 
-	# attack controller
+############################# ATTACK ###########################
 	if Input.is_action_just_pressed("attack") and not isAttacking and canAttack and not isDashing and GameManager.attack_unlock == true:
 		isAttacking = true
 		canAttack = false
@@ -136,20 +148,21 @@ func _physics_process(delta: float) -> void:
 		if not isAttacking:
 			$attack_area/CollisionShape2D.disabled = true
 
+
+############################ DASH ###############################################
 	if Input.is_action_just_pressed("dash") and not isDashing and not isAttacking:
 		velocity.x = 0
 		start_dash()
 	if isAttacking:
 		pass
 	elif isDashing:
-		# Maintain roll velocity
+		# maintain DASH velocity
 		pass
 
+################ RUN ###########################
 	else:
 		var direction := Input.get_axis("move_left", "move_right")
 		var deadzone = 0.5
-		
-		
 		# controller deadzone
 		if abs(direction) < deadzone:
 			direction = 0
@@ -181,6 +194,7 @@ func _physics_process(delta: float) -> void:
 
 		else:
 			velocity.x = 0
+####################### ANIMATIONS ############################
 			if not isAttacking and is_on_floor():
 				#velocity.x = move_toward(velocity.x, 0, SPEED)
 				animated_sprite_2d.play("idle")
@@ -198,7 +212,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			animated_sprite_2d.play("idle")
 
-		# kamehameha
+############################ KAMEHAMEHA #################################
 		if Input.is_action_just_pressed("shoot") and not isAttacking and GameManager.kamehameha_unlock == true and not isShooting:
 			isShooting = true
 			var k = kamehameha.instantiate()
@@ -207,7 +221,8 @@ func _physics_process(delta: float) -> void:
 			get_parent().add_child(k)
 			await get_tree().create_timer(2).timeout
 			isShooting = false
-		
+
+######################## SHURIKEN #############################3
 		if Input.is_action_just_pressed("projectile_shoot") and not isAttacking and not isShooting:
 			isShooting = true
 			var s = shuriken.instantiate()
@@ -217,8 +232,6 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(0.5).timeout
 			isShooting = false
 		
-
-			
 
 	move_and_slide()
 	
