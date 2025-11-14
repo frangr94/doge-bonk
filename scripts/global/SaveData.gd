@@ -1,6 +1,9 @@
 extends Resource
 class_name SaveDataResource
 
+# current_scene
+@export var current_scene: String = ""
+
 # hp
 @export var max_hp: int = 3
 @export var player_hp: int = 3
@@ -36,3 +39,6 @@ class_name SaveDataResource
 @export var chip_shard_10: bool = false
 @export var chip_shard_11: bool = false
 @export var chip_shard_12: bool = false
+
+# chests
+@export var tutorial_chest_1: bool = false

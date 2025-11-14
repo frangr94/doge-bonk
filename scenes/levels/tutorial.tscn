@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=47 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
@@ -27,6 +27,8 @@
 [ext_resource type="Script" uid="uid://bhuwtkmjmmrw4" path="res://scripts/items/chip_shards/self_chip_shard_1.gd" id="25_m6rdq"]
 [ext_resource type="Script" uid="uid://bv1gbxojxcr5f" path="res://scripts/items/chip_shards/self_chip_shard_2.gd" id="26_f1d85"]
 [ext_resource type="Script" uid="uid://pg8krvsvyaif" path="res://scripts/items/chip_shards/self_chip_shard_3.gd" id="27_4rqrb"]
+[ext_resource type="PackedScene" uid="uid://246j7m6jwsdf" path="res://scenes/levels/chest.tscn" id="28_x7mr2"]
+[ext_resource type="Script" uid="uid://bb1eg12wx4isr" path="res://scripts/items/chests/chest_tutorial_1.gd" id="29_giya0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irnc0"]
 texture = ExtResource("2_uu0hj")
@@ -535,6 +537,10 @@ position = Vector2(-344, 32)
 
 [node name="checkpoint2" parent="." instance=ExtResource("4_x7mr2")]
 position = Vector2(-616, -240)
+
+[node name="chest" parent="." instance=ExtResource("28_x7mr2")]
+position = Vector2(1056, 65)
+script = ExtResource("29_giya0")
 
 [connection signal="body_entered" from="platforms/memory_platform/platform_collider" to="platforms/memory_platform/platform_collider" method="_on_body_entered"]
 [connection signal="body_entered" from="platforms/AnimatableBody2D2/platform_collider" to="platforms/AnimatableBody2D2/platform_collider" method="_on_body_entered"]
