@@ -23,6 +23,7 @@ func _on_interact():
 		SaveLoad.SaveFileData.self_shard_amount = 0
 		SaveLoad.SaveFileData.chip_shard_2 = true
 		GameManager.port_heal()
+		GameManager.self_shard_pick()
 		SaveLoad._save()
 		queue_free()
 		print(SaveLoad.SaveFileData.max_hp)
@@ -30,5 +31,6 @@ func _on_interact():
 		SaveLoad.SaveFileData.self_shard_amount += 1
 		print("has "+ str(SaveLoad.SaveFileData.self_shard_amount) + "shards" )
 		SaveLoad.SaveFileData.chip_shard_2 = true
+		GameManager.self_shard_pick()
 		SaveLoad._save()
 		queue_free()

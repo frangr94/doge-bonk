@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var coyote_time: float = 0.125
 @onready var shuriken = preload("uid://b811meofd7bjx")
 @onready var shuriken_position: Marker2D = $shuriken_position
+@onready var inventory: CanvasLayer = $inventory
 
 
 # running and jump speed
@@ -37,11 +38,14 @@ var MAX_JUMPS = 1
 var jump_count = GameManager.jump_count
 var can_jump: bool = true
 
+var inventory_open = false
+
 
 # kamahameha controller
 var isShooting = false
 
 func _ready():
+	inventory.visible = false
 	if SaveLoad.SaveFileData.player_position:
 		global_position = SaveLoad.SaveFileData.player_position
 	else:
@@ -87,8 +91,6 @@ func start_dash() -> void:
 		canDash = true
 
 
-
-
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and isDashing == false:
 		if can_jump:
@@ -97,12 +99,14 @@ func _physics_process(delta: float) -> void:
 		
 	else:
 		can_jump = true
-
 	# jump controller
 	if GameManager.double_jump_unlock == true:
 		MAX_JUMPS = 2
 	else:
 		MAX_JUMPS = 1
+
+
+
 
 	if Input.is_action_just_pressed("jump") and GameManager.jump_count < MAX_JUMPS:
 		if GameManager.jump_count == 1:
@@ -212,9 +216,10 @@ func _physics_process(delta: float) -> void:
 			get_parent().add_child(s)
 			await get_tree().create_timer(0.5).timeout
 			isShooting = false
-			
-			
 		
+
+			
+
 	move_and_slide()
 	
 	# reset jumps
