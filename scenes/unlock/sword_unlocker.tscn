@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func _on_interact():
 	GameManager.attack_unlock = true
+	SaveLoad.SaveFileData.attack_unlock = true
 	interactable.is_interactable = false
 	print(\"attack_unlock: \" + str(GameManager.attack_unlock))
 	queue_free()
