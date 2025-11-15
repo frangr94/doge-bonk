@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Doge Bonk"
-run/main_scene="uid://ciwhl2qkm8sa1"
+run/main_scene="uid://bplcr65byecdu"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,8 @@ CharacterSave="*res://scripts/global/SaveData.gd"
 SaveLoad="*res://scripts/global/SaveLoad.gd"
 MinibossManager="*res://scripts/global/miniboss_manager.gd"
 Inventory="*res://scripts/global/inventory.gd"
+FadeSceneTransition="*res://scenes/levels/fade_scene_transition.tscn"
+SceneLoader="*res://scripts/levels/scene_transitions/scene_loader.gd"
 
 [dialogue_manager]
 

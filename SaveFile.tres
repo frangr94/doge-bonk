@@ -4,10 +4,7 @@
 
 [resource]
 script = ExtResource("1_j2dgk")
-current_scene = "/root/tutorial"
-attack_unlock = true
-player_position = Vector2(960, 64)
-pixeler_big_tutorial_defeated = true
-tutorial_barrier_merlin = false
+current_scene = "res://scenes/levels/tutorial.tscn"
+player_position = Vector2(57, 32)
 self_shard_amount = 1
-tutorial_chest_1 = true
+chip_shard_1 = true
