@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dlvxnm38ok483"]
+
+[node name="map" type="CanvasLayer"]
+
+[node name="map_illustration" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
