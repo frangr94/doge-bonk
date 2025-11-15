@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d27v3vebwwcyf"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1iqh0"]
+b = Vector2(0, -48)
+
+[node name="scene_transition_border" type="Area2D"]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_1iqh0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

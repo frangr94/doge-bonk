@@ -45,7 +45,6 @@ var can_jump: bool = true
 
 var inventory_open = false
 
-
 # kamahameha controller
 var isShooting = false
 
@@ -55,7 +54,7 @@ func _ready():
 	if SaveLoad.SaveFileData.player_position:
 		global_position = SaveLoad.SaveFileData.player_position
 	else:
-		global_position = Vector2(-1140,-400)
+		global_position = Vector2(0,0)
 
 func bounce(strenght: float = 300):
 	velocity.y = -strenght

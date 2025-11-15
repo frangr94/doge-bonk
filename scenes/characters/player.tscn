@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=62 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://y477wvbvi1we" path="res://scenes/particles/player/attack.tscn" id="7_eojnx"]
 [ext_resource type="PackedScene" uid="uid://dleddfcd741v6" path="res://scenes/ui/inventory.tscn" id="9_qgnko"]
 [ext_resource type="PackedScene" uid="uid://beoysmoa34fd1" path="res://scenes/ui/ui_gameplay.tscn" id="10_7vyk4"]
+[ext_resource type="PackedScene" uid="uid://dlvxnm38ok483" path="res://scenes/ui/map.tscn" id="11_jk2m4"]
+[ext_resource type="Script" uid="uid://niea4yorfnqh" path="res://scripts/ui/map.gd" id="12_xhtjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yyjep"]
 atlas = ExtResource("3_eojnx")
@@ -429,3 +431,6 @@ position = Vector2(0, 12)
 [node name="inventory" parent="." instance=ExtResource("9_qgnko")]
 
 [node name="ui_gameplay" parent="." instance=ExtResource("10_7vyk4")]
+
+[node name="map" parent="." instance=ExtResource("11_jk2m4")]
+script = ExtResource("12_xhtjm")

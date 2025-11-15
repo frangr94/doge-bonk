@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3 uid="uid://457o00dl8s3v"]
 
-[ext_resource type="Script" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
+[ext_resource type="Script" uid="uid://b7o6riyd5vp5m" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
 
 [resource]
 script = ExtResource("1_j2dgk")
-current_scene = "/root/tutorial"
-attack_unlock = true
-player_position = Vector2(960, 64)
-pixeler_big_tutorial_defeated = true
+current_scene = "res://scenes/levels/tutorial.tscn"
+player_position = Vector2(2176, -96)
 tutorial_barrier_merlin = false
 self_shard_amount = 1
-tutorial_chest_1 = true
+chip_shard_1 = true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7mf52qcfh6k4"]
+[gd_scene load_steps=11 format=3 uid="uid://c7mf52qcfh6k4"]
 
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="1_y8xf3"]
 [ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_pnmf1"]
 [ext_resource type="Script" uid="uid://joivel1veiyu" path="res://scripts/events/save.gd" id="2_y8xf3"]
+[ext_resource type="PackedScene" uid="uid://cefgdaurqqbpd" path="res://scenes/ui/arrow_up_ui.tscn" id="4_s3rov"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3rov"]
 atlas = ExtResource("1_y8xf3")
@@ -54,3 +55,6 @@ script = ExtResource("2_y8xf3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
 position = Vector2(-0.5, -7)
 shape = SubResource("RectangleShape2D_y8xf3")
+
+[node name="arrow_up_ui" parent="." instance=ExtResource("4_s3rov")]
+position = Vector2(0, -39)

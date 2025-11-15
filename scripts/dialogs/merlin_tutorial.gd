@@ -1,6 +1,5 @@
 extends Area2D
 
-
 @onready var tutorial_barrier: StaticBody2D = $"../tutorial_barrier"
 
 @onready var interactable: Area2D = $interactable

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bplcr65byecdu"]
+
+[ext_resource type="Script" uid="uid://bppu66duxewil" path="res://scenes/global/loader.gd" id="1_liqcc"]
+
+[node name="loader" type="Node"]
+script = ExtResource("1_liqcc")

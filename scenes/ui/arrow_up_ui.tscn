@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cefgdaurqqbpd"]
+
+[ext_resource type="Texture2D" uid="uid://r8cf7cjgu13k" path="res://assets/sprites/arrow_up_animation.png" id="1_tgcgn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whjp2"]
+atlas = ExtResource("1_tgcgn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq61t"]
+atlas = ExtResource("1_tgcgn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogq0y"]
+atlas = ExtResource("1_tgcgn")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjdcy"]
+atlas = ExtResource("1_tgcgn")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o0qwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whjp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq61t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogq0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjdcy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="arrow_up_ui" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_o0qwe")
+autoplay = "default"
+frame_progress = 0.31417432

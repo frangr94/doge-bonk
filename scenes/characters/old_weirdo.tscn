@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt8gc8kpc8b33"]
+[gd_scene load_steps=11 format=3 uid="uid://dt8gc8kpc8b33"]
 
 [ext_resource type="Script" uid="uid://df7pftchmi46" path="res://scripts/dialogs/merlin_tutorial.gd" id="1_dnjyh"]
 [ext_resource type="Texture2D" uid="uid://bcv6ipd85w3ck" path="res://assets/sprites/old_weirdo_idle.png" id="2_dnjyh"]
 [ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_ylntc"]
+[ext_resource type="PackedScene" uid="uid://cefgdaurqqbpd" path="res://scenes/ui/arrow_up_ui.tscn" id="4_4k5gk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3kndn"]
 atlas = ExtResource("2_dnjyh")
@@ -43,7 +44,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnjyh"]
 size = Vector2(26, 20)
 
-[node name="bearded_stranger" type="Area2D"]
+[node name="old_weirdo" type="Area2D"]
 script = ExtResource("1_dnjyh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -56,3 +57,6 @@ frame_progress = 0.732414
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_dnjyh")
+
+[node name="arrow_up_ui" parent="." instance=ExtResource("4_4k5gk")]
+position = Vector2(0, -19)
