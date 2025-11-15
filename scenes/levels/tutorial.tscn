@@ -1,11 +1,20 @@
-[gd_scene load_steps=11 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=21 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
+[ext_resource type="PackedScene" uid="uid://cfewry10rw70c" path="res://scenes/enemies/shadow_pixeler.tscn" id="5_4o3hj"]
 [ext_resource type="PackedScene" uid="uid://d27v3vebwwcyf" path="res://scenes/levels/scene_transition.tscn" id="6_7ac3l"]
+[ext_resource type="PackedScene" uid="uid://dlmdq5f372df0" path="res://scenes/enemies/shadow_pixeler_big.tscn" id="6_uy53l"]
 [ext_resource type="Script" uid="uid://dccp0wealvf6" path="res://scripts/levels/scene_transitions/tutorial_to_dusty_bottom.gd" id="7_iig34"]
+[ext_resource type="PackedScene" uid="uid://bk1e141aawptk" path="res://scenes/enemies/enemy_stopper_horizontal.tscn" id="7_l8ohl"]
 [ext_resource type="PackedScene" uid="uid://cwwvmmv07i4lt" path="res://scenes/levels/fade_scene_transition.tscn" id="8_3e81p"]
+[ext_resource type="PackedScene" uid="uid://bheh3gb11aaob" path="res://scenes/levels/recharge_port.tscn" id="9_g7bfq"]
+[ext_resource type="PackedScene" uid="uid://d856awsyxgm3" path="res://scenes/events/terrain_killzone.tscn" id="10_4a02d"]
 [ext_resource type="PackedScene" uid="uid://c7mf52qcfh6k4" path="res://scenes/levels/save_point.tscn" id="10_uu0hj"]
+[ext_resource type="PackedScene" uid="uid://cs1simwxgta6e" path="res://scenes/levels/checkpoint.tscn" id="11_uu0hj"]
+[ext_resource type="PackedScene" uid="uid://dt8gc8kpc8b33" path="res://scenes/characters/old_weirdo.tscn" id="15_wr5d5"]
+[ext_resource type="PackedScene" uid="uid://cjxhpskuvdx1k" path="res://scenes/characters/player_stopper.tscn" id="16_uy53l"]
+[ext_resource type="Script" uid="uid://dde8acrpb70v1" path="res://scripts/barriers/tutorial_player_stopper.gd" id="17_l8ohl"]
 [ext_resource type="PackedScene" uid="uid://bvjk63njsli6c" path="res://scenes/items/self_chip_shard.tscn" id="24_gwe3r"]
 [ext_resource type="Script" uid="uid://bhuwtkmjmmrw4" path="res://scripts/items/chip_shards/self_chip_shard_1.gd" id="25_m6rdq"]
 
@@ -102,6 +111,9 @@ custom_data_layer_0/name = "breakable"
 custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_1wklo")
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uu0hj"]
+b = Vector2(163, 0)
+
 [node name="tutorial" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_rnyxf")]
@@ -112,20 +124,101 @@ collision_mask = 192
 zoom = Vector2(3, 3)
 
 [node name="foreground" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD9/wMAAQABAAEAAAD+/wMAAQABAAEAAAD//wMAAQABAAEAAAAAAAMAAQABAAEAAAABAAMAAQABAAEAAAACAAMAAQABAAEAAAADAAMAAQABAAEAAAAEAAMAAQABAAEAAAAFAAMAAQABAAEAAAAGAAMAAQABAAEAAAAHAAMAAQABAAEAAAAIAAMAAQABAAEAAAAJAAMAAQABAAEAAAAKAAMAAQABAAEAAAALAAMAAQABAAEAAAAMAAMAAQABAAEAAAANAAMAAQABAAEAAAAOAAMAAQABAAEAAAAPAAMAAQABAAEAAAAQAAMAAQABAAEAAAARAAMAAQABAAEAAAASAAMAAQABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD9/wMAAQABAAEAAAD+/wMAAQABAAEAAAD//wMAAQABAAEAAAAAAAMAAQABAAEAAAABAAMAAQABAAEAAAACAAMAAQABAAEAAAADAAMAAQABAAEAAAAEAAMAAQABAAEAAAAFAAMAAQABAAEAAAAGAAMAAQABAAEAAAAHAAMAAQABAAEAAAAIAAMAAQABAAEAAAAJAAMAAQABAAEAAAAKAAMAAQABAAEAAAALAAMAAQABAAEAAAAMAAMAAQABAAEAAAANAAMAAQABAAEAAAAOAAMAAQABAAEAAAAPAAMAAQABAAEAAAAQAAMAAQABAAEAAAARAAMAAQABAAEAAAASAAMAAQABAAEAAAATAAMAAQADAAQAAAAUAAMAAQADAAQAAAAVAAMAAQADAAQAAAAWAAMAAQADAAQAAAAXAAMAAQADAAQAAAAYAAMAAQADAAQAAAAZAAMAAQADAAQAAAAaAAEAAQADAAQAAAAaAAIAAQADAAQAAAAaAAMAAQADAAQAAAAbAAEAAQADAAQAAAAcAAEAAQADAAQAAAAcAP//AQADAAQAAAAcAAAAAQADAAQAAAAdAP//AQADAAQAAAAeAP//AQADAAQAAAAeAP7/AQADAAQAAAAeAP3/AQADAAQAAAAfAP3/AQADAAQAAAAgAP3/AQADAAMAAAAhAP3/AQADAAMAAAAiAP3/AQADAAMAAAAjAP3/AQADAAMAAAAkAP3/AQADAAMAAAAlAP3/AQABAAQAAAAmAP3/AQABAAQAAAAnAP3/AQABAAQAAAAoAP3/AQABAAQAAAApAP3/AQABAAQAAAAqAP3/AQABAAQAAAArAP3/AQABAAQAAAAsAP3/AQADAAMAAAAtAP3/AQADAAMAAAAuAP3/AQADAAMAAAAvAP3/AQADAAMAAAAwAP3/AQADAAMAAAAxAP3/AQADAAMAAAAyAP3/AQADAAMAAAAzAP3/AQADAAMAAAA0AP3/AQADAAMAAAA1AP3/AQADAAMAAAA2AP3/AQADAAQAAAA3AP3/AQADAAQAAAA4AP3/AQADAAQAAAA5AP3/AQADAAQAAAA6AP3/AQADAAQAAAAZAAIAAQABAAQAAAAYAAIAAQABAAQAAAA7AP3/AQADAAMAAAA8AP3/AQADAAMAAAA9AP3/AQADAAMAAAA+AP3/AQADAAMAAAA/AP3/AQADAAMAAABAAP3/AQADAAMAAABBAP3/AQADAAMAAABCAP3/AQADAAMAAABDAP3/AQADAAMAAABEAP3/AQADAAMAAABFAP3/AQABAAQAAABGAP3/AQABAAQAAABHAP3/AQABAAQAAABIAP3/AQABAAQAAABJAP3/AQABAAQAAABKAP3/AQABAAQAAABLAP3/AQABAAQAAABMAP3/AQABAAQAAABMAP7/AQABAAQAAABMAP//AQABAAQAAABNAP//AQABAAQAAABOAP//AQABAAQAAABOAAAAAQABAAQAAABOAAEAAQABAAQAAABPAAEAAQABAAQAAABQAAEAAQABAAQAAABRAAEAAQABAAQAAABSAAEAAQABAAQAAABTAAEAAQABAAQAAABUAAEAAQABAAQAAABVAAEAAQABAAQAAABWAAEAAQABAAQAAABXAAEAAQABAAQAAABYAAEAAQABAAQAAABZAAEAAQABAAQAAABaAAEAAQABAAQAAABbAAEAAQABAAQAAABcAAEAAQABAAQAAABdAAEAAQABAAQAAABeAAEAAQABAAQAAABfAAEAAQABAAQAAABgAAEAAQABAAQAAABhAAEAAQABAAQAAABiAAEAAQABAAQAAABjAAEAAQABAAQAAABkAAEAAQABAAQAAABlAAEAAQABAAQAAABmAAEAAQABAAQAAABaAAAAAQABAAQAAABbAAAAAQABAAQAAABkAAAAAQABAAQAAABlAAAAAQABAAQAAABnAAEAAQABAAQAAABoAAEAAQABAAQAAABpAAEAAQABAAQAAABqAAEAAQABAAQAAABrAAEAAQABAAQAAABsAAEAAQABAAQAAABtAAEAAQABAAQAAABuAAEAAQABAAQAAABvAAEAAQABAAQAAABuAAAAAQABAAQAAABvAAAAAQABAAQAAABuAP//AQABAAQAAABvAP//AQABAAQAAABwAP//AQABAAQAAABxAP//AQABAAQAAABxAAAAAQABAAQAAABxAAEAAQABAAQAAABwAAAAAQABAAQAAABwAAEAAQABAAQAAABzAAEAAQABAAQAAAByAAEAAQABAAQAAAB0AAEAAQABAAQAAAB1AAEAAQABAAQAAAB2AAEAAQABAAQAAAB3AAEAAQABAAQAAAB4AAEAAQABAAQAAAB5AAEAAQABAAQAAAB6AAEAAQABAAQAAAB7AAEAAQABAAQAAAB8AAEAAQABAAQAAAB9AAEAAQABAAQAAAB+AAEAAQABAAQAAAB/AAEAAQABAAQAAACAAAEAAQABAAQAAACBAAEAAQABAAQAAACCAAEAAQADAAQAAACCAAAAAQADAAQAAACDAAAAAQADAAQAAACDAAEAAQADAAQAAACCAP//AQADAAQAAACDAP//AQADAAQAAACEAP//AQADAAQAAACFAP//AQADAAQAAACFAP7/AQADAAQAAACEAP7/AQADAAQAAACEAP3/AQADAAQAAACFAP3/AQADAAQAAACGAP3/AQADAAQAAACHAP3/AQADAAQAAACHAPz/AQADAAQAAACGAPz/AQADAAQAAACGAPv/AQADAAQAAACHAPv/AQADAAQAAACIAPv/AQADAAQAAACJAPv/AQADAAQAAACKAPv/AQADAAQAAACLAPv/AQADAAQAAACMAPv/AQADAAQAAACNAPv/AQADAAQAAACOAPv/AQADAAQAAACIAPz/AQADAAQAAACJAPz/AQADAAQAAACKAPz/AQADAAQAAACLAPz/AQADAAQAAACMAPz/AQADAAQAAACNAPz/AQADAAQAAACOAPz/AQADAAQAAACIAP3/AQADAAQAAACIAP7/AQADAAQAAACIAP//AQADAAQAAACIAAAAAQADAAQAAACIAAEAAQADAAQAAACJAP3/AQADAAQAAACJAP7/AQADAAQAAACJAP//AQADAAQAAACJAAAAAQADAAQAAACJAAEAAQADAAQAAACKAP3/AQADAAQAAACKAP7/AQADAAQAAACKAP//AQADAAQAAACKAAAAAQADAAQAAACKAAEAAQADAAQAAACLAP3/AQADAAQAAACLAP7/AQADAAQAAACLAP//AQADAAQAAACLAAAAAQADAAQAAACLAAEAAQADAAQAAACMAP3/AQADAAQAAACMAP7/AQADAAQAAACMAP//AQADAAQAAACMAAAAAQADAAQAAACMAAEAAQADAAQAAACNAP3/AQADAAQAAACNAP7/AQADAAQAAACNAP//AQADAAQAAACNAAAAAQADAAQAAACNAAEAAQADAAQAAACOAP3/AQADAAQAAACOAP7/AQADAAQAAACOAP//AQADAAQAAACOAAAAAQADAAQAAACOAAEAAQADAAQAAACEAAAAAQADAAQAAACEAAEAAQADAAQAAACFAAAAAQADAAQAAACFAAEAAQADAAQAAACGAAAAAQADAAQAAACGAAEAAQADAAQAAACHAAAAAQADAAQAAACHAAEAAQADAAQAAACGAP7/AQADAAQAAACGAP//AQADAAQAAACHAP7/AQADAAQAAACHAP//AQADAAQAAACPAPv/AQADAAQAAACPAPz/AQADAAQAAACPAP3/AQADAAQAAACPAP7/AQADAAQAAACPAP//AQADAAQAAACPAAAAAQADAAQAAACPAAEAAQADAAQAAABzAP//AQADAAQAAABzAAAAAQADAAQAAAByAAAAAQADAAQAAAByAP//AQADAAQAAAA=")
 tile_set = SubResource("TileSet_1r3rq")
 
-[node name="self_chip_shard" parent="." instance=ExtResource("24_gwe3r")]
-position = Vector2(93, 37)
-script = ExtResource("25_m6rdq")
-
-[node name="save_point" parent="." instance=ExtResource("10_uu0hj")]
-position = Vector2(57, 32)
-
 [node name="scene_transition_border" parent="." instance=ExtResource("6_7ac3l")]
-position = Vector2(300, 48)
+position = Vector2(-41, 49)
 script = ExtResource("7_iig34")
 
 [node name="enemies" type="Node" parent="."]
 
+[node name="shadow_pixeler" parent="enemies" instance=ExtResource("5_4o3hj")]
+position = Vector2(1350, 2)
+
+[node name="shadow_pixeler_big" parent="enemies" instance=ExtResource("6_uy53l")]
+position = Vector2(1886, -16)
+
+[node name="shadow_pixeler2" parent="enemies" instance=ExtResource("5_4o3hj")]
+position = Vector2(1542, 2)
+
+[node name="shadow_pixeler3" parent="enemies" instance=ExtResource("5_4o3hj")]
+position = Vector2(1695, 2)
+
+[node name="StaticBody2D" parent="enemies" instance=ExtResource("7_l8ohl")]
+position = Vector2(1271, 16)
+
+[node name="StaticBody2D2" parent="enemies" instance=ExtResource("7_l8ohl")]
+position = Vector2(1432, 16)
+
+[node name="StaticBody2D3" parent="enemies" instance=ExtResource("7_l8ohl")]
+position = Vector2(1479, 16)
+
+[node name="StaticBody2D4" parent="enemies" instance=ExtResource("7_l8ohl")]
+position = Vector2(1593, 16)
+
+[node name="StaticBody2D5" parent="enemies" instance=ExtResource("7_l8ohl")]
+position = Vector2(1643, 16)
+
+[node name="StaticBody2D6" parent="enemies" instance=ExtResource("7_l8ohl")]
+position = Vector2(1752, 15)
+
+[node name="StaticBody2D7" parent="enemies" instance=ExtResource("7_l8ohl")]
+position = Vector2(1863, 16)
+
+[node name="StaticBody2D8" parent="enemies" instance=ExtResource("7_l8ohl")]
+position = Vector2(2073, 16)
+
 [node name="fade_scene_transition" parent="." instance=ExtResource("8_3e81p")]
+visible = false
+
+[node name="save_points" type="Node" parent="."]
+
+[node name="save_point" parent="save_points" instance=ExtResource("10_uu0hj")]
+position = Vector2(57, 32)
+
+[node name="items" type="Node" parent="."]
+
+[node name="self_chip_shard" parent="items" instance=ExtResource("24_gwe3r")]
+position = Vector2(93, 37)
+script = ExtResource("25_m6rdq")
+
+[node name="recharge_port" parent="items" instance=ExtResource("9_g7bfq")]
+position = Vector2(136, 16)
+
+[node name="platforms" type="Node" parent="."]
+
+[node name="terrain_killzones" type="Node" parent="."]
+
+[node name="terrain_killzone" parent="terrain_killzones" instance=ExtResource("10_4a02d")]
+position = Vector2(510, -33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="terrain_killzones/terrain_killzone"]
+shape = SubResource("SegmentShape2D_uu0hj")
+
+[node name="terrain_killzone2" parent="terrain_killzones" instance=ExtResource("10_4a02d")]
+position = Vector2(704, -33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="terrain_killzones/terrain_killzone2"]
+shape = SubResource("SegmentShape2D_uu0hj")
+
+[node name="checkpoints" type="Node" parent="."]
+
+[node name="checkpoint" parent="checkpoints" instance=ExtResource("11_uu0hj")]
+position = Vector2(504, -64)
+
+[node name="checkpoint2" parent="checkpoints" instance=ExtResource("11_uu0hj")]
+position = Vector2(1224, -64)
+
+[node name="checkpoint3" parent="checkpoints" instance=ExtResource("11_uu0hj")]
+position = Vector2(1816, -32)
+
+[node name="old_weirdo" parent="." instance=ExtResource("15_wr5d5")]
+position = Vector2(2263, -92)
+
+[node name="tutorial_barrier" parent="." instance=ExtResource("16_uy53l")]
+position = Vector2(2296, -80)
+script = ExtResource("17_l8ohl")
+
+[node name="save_point" parent="." instance=ExtResource("10_uu0hj")]
+position = Vector2(2176, -96)
