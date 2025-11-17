@@ -13,11 +13,11 @@ extends CharacterBody2D
 @onready var shuriken = preload("uid://b811meofd7bjx")
 @onready var shuriken_position: Marker2D = $shuriken_position
 @onready var inventory: CanvasLayer = $inventory
-<<<<<<< HEAD
-@onready var dash: CPUParticles2D = $dash
-=======
+
+@onready var dash_particle: CPUParticles2D = $dash_particle
+
 @onready var dash_sound: AudioStreamPlayer = $dash
->>>>>>> ronin-sword
+
 
 
 # running and jump speed
@@ -85,11 +85,10 @@ func start_dash() -> void:
 			dash_sound.play()
 		else:
 			animated_sprite_2d.play("air_dash")
-<<<<<<< HEAD
-			dash.emitting = true
-=======
+			dash_particle.emitting = true
+
 			dash_sound.play()
->>>>>>> ronin-sword
+
 		player.set_collision_layer_value(7, false) # get iframes
 		# freeze vertical velocity to make a straightline while dashing
 		velocity.y = 0
@@ -190,7 +189,7 @@ func _physics_process(delta: float) -> void:
 				attack.scale.x = 1
 				attack.position = Vector2(10,0)
 				attack_particle.scale.x = 1
-				dash.scale.x = 1
+				dash_particle.scale.x = 1
 		elif direction < 0:
 			if abs(velocity.x) > 10 and not isAttacking:
 				animated_sprite_2d.flip_h = true
@@ -201,7 +200,7 @@ func _physics_process(delta: float) -> void:
 				attack.scale.x = -1
 				attack.position = Vector2(-10,0)
 				attack_particle.scale.x = -1
-				dash.scale.x = -1
+				dash_particle.scale.x = -1
 
 		if direction !=0:
 			var target_speed := direction * SPEED

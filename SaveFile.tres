@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3 uid="uid://dt15rh78ehs68"]
 
-[ext_resource type="Script" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
+[ext_resource type="Script" uid="uid://b7o6riyd5vp5m" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
 
 [resource]
 script = ExtResource("1_j2dgk")
 current_scene = "res://scenes/levels/tutorial.tscn"
+attack_unlock = true
+dash_unlock = true
+double_jump_unlock = true
+kamehameha_unlock = true
+bounce_unlock = true
 player_position = Vector2(2176, -96)

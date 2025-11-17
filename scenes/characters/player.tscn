@@ -433,5 +433,5 @@ position = Vector2(0, 12)
 [node name="map" parent="." instance=ExtResource("11_jk2m4")]
 script = ExtResource("12_xhtjm")
 
-[node name="dash" parent="." instance=ExtResource("13_xhtjm")]
+[node name="dash_particle" parent="." instance=ExtResource("13_xhtjm")]
 position = Vector2(9, -1)
