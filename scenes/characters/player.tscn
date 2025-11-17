@@ -15,19 +15,19 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yyjep"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(0, 224, 32, 32)
+region = Rect2(128, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6aj6e"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(32, 224, 32, 32)
+region = Rect2(160, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n7k00"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(64, 224, 32, 32)
+region = Rect2(192, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnpl6"]
 atlas = ExtResource("3_eojnx")
-region = Rect2(96, 224, 32, 32)
+region = Rect2(224, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eojnx"]
 atlas = ExtResource("3_eojnx")
@@ -389,7 +389,7 @@ script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"run"
+animation = &"air_dash"
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 1568
