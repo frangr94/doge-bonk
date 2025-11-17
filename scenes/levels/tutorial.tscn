@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ciwhl2qkm8sa1"]
+[gd_scene load_steps=22 format=4 uid="uid://ciwhl2qkm8sa1"]
 
 [ext_resource type="PackedScene" uid="uid://yshyoholm5s8" path="res://scenes/characters/player.tscn" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="2_uu0hj"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dt8gc8kpc8b33" path="res://scenes/characters/old_weirdo.tscn" id="15_wr5d5"]
 [ext_resource type="PackedScene" uid="uid://cjxhpskuvdx1k" path="res://scenes/characters/player_stopper.tscn" id="16_uy53l"]
 [ext_resource type="Script" uid="uid://dde8acrpb70v1" path="res://scripts/barriers/tutorial_player_stopper.gd" id="17_l8ohl"]
+[ext_resource type="PackedScene" uid="uid://cpwkr3wax7e4h" path="res://scenes/levels/breakable_tiles/breakable_tile_ram.tscn" id="18_wr5d5"]
 [ext_resource type="PackedScene" uid="uid://bvjk63njsli6c" path="res://scenes/items/self_chip_shard.tscn" id="24_gwe3r"]
 [ext_resource type="Script" uid="uid://bhuwtkmjmmrw4" path="res://scripts/items/chip_shards/self_chip_shard_1.gd" id="25_m6rdq"]
 
@@ -222,3 +223,6 @@ script = ExtResource("17_l8ohl")
 
 [node name="save_point" parent="." instance=ExtResource("10_uu0hj")]
 position = Vector2(2176, -96)
+
+[node name="breakable_tile_ram" parent="." instance=ExtResource("18_wr5d5")]
+position = Vector2(2232, -88)
