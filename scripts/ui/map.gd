@@ -11,8 +11,9 @@ var map_dictionary = {
 }
 
 func show_map():
-	print(map_dictionary[SaveLoad.SaveFileData.current_scene])
-	map_illustration.texture = load(map_dictionary[SaveLoad.SaveFileData.current_scene])
+	if SaveLoad.SaveFileData.current_scene:
+		print(map_dictionary[SaveLoad.SaveFileData.current_scene])
+		map_illustration.texture = load(map_dictionary[SaveLoad.SaveFileData.current_scene])
 	
 
 # Called when the node enters the scene tree for the first time.
