@@ -146,11 +146,13 @@ func _physics_process(delta: float) -> void:
 
 ############################# ATTACK ###########################
 	if Input.is_action_just_pressed("attack") and not isAttacking and canAttack and not isDashing and GameManager.attack_unlock == true:
+		sword_slash_sound.play()
+		attack.play("default")
 		isAttacking = true
 		canAttack = false
-		attack.play("default")
+	
 		attack_particle.emitting = true
-		sword_slash_sound.play()
+		
 		$attack_area/CollisionShape2D.disabled = false
 	
 		isAttacking = false

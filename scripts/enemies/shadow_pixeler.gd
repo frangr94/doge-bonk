@@ -26,7 +26,7 @@ func _on_area_entered(area: Area2D) -> void:
 		await audio_stream_player.finished
 		collision_shape_2d.set_deferred("disabled", false)
 		hp -= 1
-		animated_sprite_2d.play("run")
+		#animated_sprite_2d.play("run")
 
 # take kamehameha damage
 func _on_body_entered(body: Node2D) -> void:
