@@ -9,7 +9,7 @@ extends Area2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 var hp = 3
-
+#
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("sword"):
 		break_tile.play()
