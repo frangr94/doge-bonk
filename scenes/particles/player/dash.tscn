@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://e2jsfs2obrhd"]
+[gd_scene load_steps=0 format=3 uid="uid://e2jsfs2obrhd"]
 
 [node name="dash" type="CPUParticles2D"]
 emitting = false

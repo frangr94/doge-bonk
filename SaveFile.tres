@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3 uid="uid://dt15rh78ehs68"]
+[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3]
 
-[ext_resource type="Script" uid="uid://b7o6riyd5vp5m" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
+[ext_resource type="Script" path="res://scripts/global/SaveData.gd" id="1_j2dgk"]
 
 [resource]
 script = ExtResource("1_j2dgk")
@@ -11,3 +11,4 @@ double_jump_unlock = true
 kamehameha_unlock = true
 bounce_unlock = true
 player_position = Vector2(2176, -96)
+pixeler_big_tutorial_defeated = true
