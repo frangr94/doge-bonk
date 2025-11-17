@@ -13,7 +13,11 @@ extends CharacterBody2D
 @onready var shuriken = preload("uid://b811meofd7bjx")
 @onready var shuriken_position: Marker2D = $shuriken_position
 @onready var inventory: CanvasLayer = $inventory
+<<<<<<< HEAD
 @onready var dash: CPUParticles2D = $dash
+=======
+@onready var dash_sound: AudioStreamPlayer = $dash
+>>>>>>> ronin-sword
 
 
 # running and jump speed
@@ -78,9 +82,14 @@ func start_dash() -> void:
 		isDashing = true
 		if is_on_floor():
 			animated_sprite_2d.play("dash")
+			dash_sound.play()
 		else:
 			animated_sprite_2d.play("air_dash")
+<<<<<<< HEAD
 			dash.emitting = true
+=======
+			dash_sound.play()
+>>>>>>> ronin-sword
 		player.set_collision_layer_value(7, false) # get iframes
 		# freeze vertical velocity to make a straightline while dashing
 		velocity.y = 0
