@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=63 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://beoysmoa34fd1" path="res://scenes/ui/ui_gameplay.tscn" id="10_7vyk4"]
 [ext_resource type="PackedScene" uid="uid://dlvxnm38ok483" path="res://scenes/ui/map.tscn" id="11_jk2m4"]
 [ext_resource type="Script" uid="uid://niea4yorfnqh" path="res://scripts/ui/map.gd" id="12_xhtjm"]
+[ext_resource type="PackedScene" uid="uid://e2jsfs2obrhd" path="res://scenes/particles/player/dash.tscn" id="13_xhtjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yyjep"]
 atlas = ExtResource("3_eojnx")
@@ -434,3 +435,6 @@ position = Vector2(0, 12)
 
 [node name="map" parent="." instance=ExtResource("11_jk2m4")]
 script = ExtResource("12_xhtjm")
+
+[node name="dash" parent="." instance=ExtResource("13_xhtjm")]
+position = Vector2(9, -1)

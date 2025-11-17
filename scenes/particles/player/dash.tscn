@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://e2jsfs2obrhd"]
+
+[node name="dash" type="CPUParticles2D"]
+emitting = false
+amount = 30
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5, 7)
+direction = Vector2(-500, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
