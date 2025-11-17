@@ -1,7 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://l3qvwh0efoas"]
+[gd_scene load_steps=8 format=3 uid="uid://l3qvwh0efoas"]
 
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="1_f6h00"]
 [ext_resource type="Script" uid="uid://cg85x8xels1mp" path="res://scripts/terrain/hit_bouncer.gd" id="1_t41y2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t41y2"]
+atlas = ExtResource("1_f6h00")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_852j1"]
+atlas = ExtResource("1_f6h00")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fwu4"]
+atlas = ExtResource("1_f6h00")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_27cp4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t41y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_852j1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fwu4")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t41y2"]
 radius = 20.024984
@@ -11,10 +40,11 @@ collision_layer = 1025
 collision_mask = 1025
 script = ExtResource("1_t41y2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_f6h00")
-region_enabled = true
-region_rect = Rect2(144, 0, 16, 16)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_27cp4")
+animation = &"hit"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t41y2")
