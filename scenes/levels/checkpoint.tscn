@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs1simwxgta6e"]
+[gd_scene load_steps=8 format=3 uid="uid://cs1simwxgta6e"]
 
 [ext_resource type="Script" uid="uid://drjjy7va6fo43" path="res://scripts/events/checkpoint.gd" id="1_8h1qo"]
 [ext_resource type="Texture2D" uid="uid://dxcewtolhplss" path="res://assets/sprites/checkpoint.png" id="1_13s36"]
+[ext_resource type="AudioStream" uid="uid://dnfhg3mmk125o" path="res://assets/sounds/checkpoint_sound.mp3" id="3_ee7em"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13s36"]
 size = Vector2(14, 73)
@@ -41,5 +42,8 @@ shape = SubResource("RectangleShape2D_13s36")
 sprite_frames = SubResource("SpriteFrames_llhk2")
 autoplay = "default"
 frame_progress = 0.38293067
+
+[node name="checkpoint_save_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ee7em")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

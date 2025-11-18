@@ -54,19 +54,17 @@ var inventory_open = false
 # kamahameha controller
 var isShooting = false
 
-
 # respawn
 func _ready():
+
 	inventory.visible = false
 	if SaveLoad.SaveFileData.player_position:
 		global_position = SaveLoad.SaveFileData.player_position
 	else:
 		global_position = Vector2(0,0)
-	
-	if not GameManager.health_changed.is_connected(Callable(self, "hit_invincibility")):
-		GameManager.health_changed.connect(Callable(self, "hit_invincibility"))
-		hit_invincibility()
-		
+
+	if not GameManager.health_decreased.is_connected(Callable(self, "hit_invincibility")):
+		GameManager.health_decreased.connect(Callable(self, "hit_invincibility"))		
 		
 func hit_invincibility():
 	hurt_sound.play()

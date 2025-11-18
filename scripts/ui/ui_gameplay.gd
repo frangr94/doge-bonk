@@ -15,6 +15,9 @@ func update_hearts():
 
 
 func _ready() -> void:
-	if not GameManager.health_changed.is_connected(Callable(self, "update_hearts")):
-		GameManager.health_changed.connect(Callable(self, "update_hearts"))
+	if not GameManager.health_decreased.is_connected(Callable(self, "update_hearts")):
+		GameManager.health_decreased.connect(Callable(self, "update_hearts"))
+		update_hearts()
+	if not GameManager.health_increased.is_connected(Callable(self, "update_hearts")):
+		GameManager.health_increased.connect(Callable(self, "update_hearts"))
 		update_hearts()
