@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var dash_particle: CPUParticles2D = $dash_particle
 @onready var dash_sound: AudioStreamPlayer = $dash
 @onready var player_hitbox: CollisionShape2D = $hitbox
+@onready var invincibility_effect: CPUParticles2D = $invincibility_effect
 
 
 # running and jump speed
@@ -67,8 +68,7 @@ func _ready():
 		
 		
 func hit_invincibility():
-	animated_sprite_2d.play("immune")
-	await  animated_sprite_2d.animation_finished
+	invincibility_effect.emitting = true
 
 func bounce(strenght: float = 300):
 	velocity.y = -strenght
@@ -159,11 +159,8 @@ func _physics_process(delta: float) -> void:
 		attack.play("default")
 		isAttacking = true
 		canAttack = false
-	
 		attack_particle.emitting = true
-		
 		$attack_area/CollisionShape2D.disabled = false
-	
 		isAttacking = false
 		await get_tree().create_timer(ATTACK_COOLDOWN).timeout
 		canAttack = true

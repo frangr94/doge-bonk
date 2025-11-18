@@ -179,6 +179,9 @@ visible = false
 [node name="save_point" parent="save_points" instance=ExtResource("10_uu0hj")]
 position = Vector2(57, 32)
 
+[node name="save_point2" parent="save_points" instance=ExtResource("10_uu0hj")]
+position = Vector2(1456, -16)
+
 [node name="items" type="Node" parent="."]
 
 [node name="self_chip_shard" parent="items" instance=ExtResource("24_gwe3r")]
@@ -196,6 +199,13 @@ position = Vector2(136, 16)
 position = Vector2(510, -33)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="terrain_killzones/terrain_killzone"]
+shape = SubResource("SegmentShape2D_uu0hj")
+
+[node name="terrain_killzone3" parent="terrain_killzones" instance=ExtResource("10_4a02d")]
+position = Vector2(510, -33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="terrain_killzones/terrain_killzone3"]
+position = Vector2(433, 0)
 shape = SubResource("SegmentShape2D_uu0hj")
 
 [node name="terrain_killzone2" parent="terrain_killzones" instance=ExtResource("10_4a02d")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=68 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://uo214q18tpcp" path="res://assets/sprites/ronin_black_sword.png" id="2_jk2m4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://y477wvbvi1we" path="res://scenes/particles/player/attack.tscn" id="7_eojnx"]
 [ext_resource type="PackedScene" uid="uid://dleddfcd741v6" path="res://scenes/ui/inventory.tscn" id="9_qgnko"]
 [ext_resource type="PackedScene" uid="uid://beoysmoa34fd1" path="res://scenes/ui/ui_gameplay.tscn" id="10_7vyk4"]
+[ext_resource type="PackedScene" uid="uid://c464bdn25y6x8" path="res://scenes/particles/player/invincibility_effect.tscn" id="10_xrqxk"]
 [ext_resource type="PackedScene" uid="uid://dlvxnm38ok483" path="res://scenes/ui/map.tscn" id="11_jk2m4"]
 [ext_resource type="Script" uid="uid://niea4yorfnqh" path="res://scripts/ui/map.gd" id="12_xhtjm"]
 [ext_resource type="PackedScene" uid="uid://e2jsfs2obrhd" path="res://scenes/particles/player/dash.tscn" id="13_xhtjm"]
@@ -366,13 +367,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_76oj4"]
-size = Vector2(32, 16)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atpat"]
-radius = 3.5
-height = 16.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kqtwu"]
 atlas = ExtResource("2_kqtwu")
 region = Rect2(0, 192, 32, 32)
@@ -409,6 +403,13 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76oj4"]
+size = Vector2(32, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atpat"]
+radius = 3.5
+height = 16.0
+
 [node name="player" type="CharacterBody2D"]
 z_index = 11
 collision_layer = 2296
@@ -418,6 +419,12 @@ script = ExtResource("1_76oj4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
 animation = &"immune"
+
+[node name="attack" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, 0)
+sprite_frames = SubResource("SpriteFrames_yyjep")
+frame = 3
+frame_progress = 1.0
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 1568
@@ -448,16 +455,16 @@ position = Vector2(4, 2)
 [node name="shuriken_position" type="Marker2D" parent="."]
 position = Vector2(4, 2)
 
-[node name="attack" type="AnimatedSprite2D" parent="."]
-position = Vector2(10, 0)
-sprite_frames = SubResource("SpriteFrames_yyjep")
-frame = 3
-frame_progress = 1.0
-
 [node name="jump" parent="." instance=ExtResource("6_6eyoc")]
 position = Vector2(0, 12)
 
 [node name="attack_particle" parent="." instance=ExtResource("7_eojnx")]
+
+[node name="invincibility_effect" parent="." instance=ExtResource("10_xrqxk")]
+position = Vector2(0, 4)
+
+[node name="dash_particle" parent="." instance=ExtResource("13_xhtjm")]
+position = Vector2(9, -1)
 
 [node name="inventory" parent="." instance=ExtResource("9_qgnko")]
 
@@ -465,6 +472,3 @@ position = Vector2(0, 12)
 
 [node name="map" parent="." instance=ExtResource("11_jk2m4")]
 script = ExtResource("12_xhtjm")
-
-[node name="dash_particle" parent="." instance=ExtResource("13_xhtjm")]
-position = Vector2(9, -1)
