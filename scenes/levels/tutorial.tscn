@@ -217,7 +217,7 @@ shape = SubResource("SegmentShape2D_uu0hj")
 [node name="checkpoints" type="Node" parent="."]
 
 [node name="checkpoint" parent="checkpoints" instance=ExtResource("11_uu0hj")]
-position = Vector2(504, -64)
+position = Vector2(360, 32)
 
 [node name="checkpoint2" parent="checkpoints" instance=ExtResource("11_uu0hj")]
 position = Vector2(1224, -64)
