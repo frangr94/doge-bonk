@@ -15,6 +15,8 @@ var jump_count = 0
 
 var dialogue_stopper = false
 
+var gravity_inverted: int = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# ADD LOAD
