@@ -25,6 +25,7 @@ MinibossManager="*res://scripts/global/miniboss_manager.gd"
 Inventory="*res://scripts/global/inventory.gd"
 FadeSceneTransition="*res://scenes/levels/fade_scene_transition.tscn"
 SceneLoader="*res://scripts/levels/scene_transitions/scene_loader.gd"
+EnemySpeedController="*res://scripts/global/enemy_speed_controller.gd"
 
 [dialogue_manager]
 

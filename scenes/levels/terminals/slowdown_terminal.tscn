@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8t5vih2fcf0t"]
+
+[ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="1_prckw"]
+[ext_resource type="Script" uid="uid://dc2iovcp6o1oq" path="res://scripts/levels/terminals/slowdown_terminal.gd" id="2_3158b"]
+[ext_resource type="PackedScene" uid="uid://mx1ohb66roc1" path="res://scenes/unlock/interactable.tscn" id="2_vebxp"]
+[ext_resource type="PackedScene" uid="uid://cefgdaurqqbpd" path="res://scenes/ui/arrow_up_ui.tscn" id="4_3158b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3158b"]
+atlas = ExtResource("1_prckw")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eci6i"]
+atlas = ExtResource("1_prckw")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_emjpl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3158b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eci6i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3158b"]
+size = Vector2(32, 32)
+
+[node name="slowdown_terminal" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_emjpl")
+autoplay = "default"
+script = ExtResource("2_3158b")
+
+[node name="interactable" parent="." instance=ExtResource("2_vebxp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
+shape = SubResource("RectangleShape2D_3158b")
+
+[node name="arrow_up_ui" parent="." instance=ExtResource("4_3158b")]
+position = Vector2(0, -24)
