@@ -15,9 +15,12 @@ extends CharacterBody2D
 @onready var inventory: CanvasLayer = $inventory
 @onready var dash_particle: CPUParticles2D = $dash_particle
 @onready var dash_sound: AudioStreamPlayer = $dash
-@onready var player_hitbox: CollisionShape2D = $hitbox
+#@onready var player_hitbox: CollisionShape2D = $hitbox
 @onready var invincibility_effect: CPUParticles2D = $invincibility_effect
 @onready var hurt_sound: AudioStreamPlayer = $hurt_sound
+@onready var terrain_hitbox: CollisionShape2D = $CollisionShape2D
+@onready var hit_effect: CPUParticles2D = $hit_effect
+@onready var heal_effect: CPUParticles2D = $heal_effect
 
 
 # running and jump speed
@@ -64,17 +67,24 @@ func _ready():
 		global_position = Vector2(0,0)
 
 	if not GameManager.health_decreased.is_connected(Callable(self, "hit_invincibility")):
-		GameManager.health_decreased.connect(Callable(self, "hit_invincibility"))		
+		GameManager.health_decreased.connect(Callable(self, "hit_invincibility"))
+		
+	if not GameManager.health_increased.is_connected(Callable(self, "heal_at_port")):
+		GameManager.health_increased.connect(Callable(self, "heal_at_port"))			
 		
 func hit_invincibility():
 	hurt_sound.play()
-	invincibility_effect.emitting = true
+	hit_effect.emitting = true
+	
+func heal_at_port():
+	heal_effect.emitting = true
 
-func bounce(strenght: float = 300):
+func bounce(strenght: float = 250):
 	velocity.y = -strenght
 
 func get_hurt():
 	animated_sprite_2d.play("hit")
+	
 
 func start_jump():
 	velocity.y = JUMP_VELOCITY
@@ -89,7 +99,7 @@ func start_dash() -> void:
 	if GameManager.dash_unlock == true and canDash == true:
 		canDash = false
 		isDashing = true
-		if is_on_floor():
+		if is_on_floor() or is_on_ceiling():
 			animated_sprite_2d.play("dash")
 			dash_sound.play()
 		else:
@@ -116,12 +126,13 @@ func start_dash() -> void:
 
 func def_gravity(velocity: Vector2):
 	if velocity.y < 0:
-		return GRAVITY
+		return GRAVITY * GameManager.gravity_inverted
 	else:
-		return FALL_GRAVITY
+		return FALL_GRAVITY * GameManager.gravity_inverted
 	pass
 
 func _physics_process(delta: float) -> void:
+	
 	if GameManager.dialogue_stopper == true:
 		return
 
@@ -129,7 +140,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() and isDashing == false:
 		if can_jump:
 			get_tree().create_timer(coyote_time).timeout.connect(coyote_timer)
-		#velocity += get_gravity() * delta * 0.9
 		velocity.y += def_gravity(velocity) * delta
 	else:
 		can_jump = true
@@ -139,18 +149,19 @@ func _physics_process(delta: float) -> void:
 	else:
 		MAX_JUMPS = 1
 
-	if Input.is_action_just_pressed("jump") and GameManager.jump_count < MAX_JUMPS:
+	if Input.is_action_just_pressed("jump") and GameManager.jump_count < MAX_JUMPS and GameManager.gravity_inverted == 1:
 		if GameManager.jump_count == 1:
 			jump.emitting = true
 			start_jump()
 		elif GameManager.jump_count == 0:
 			start_jump()
-	elif Input.is_action_just_pressed("jump") and can_jump and GameManager.jump_count >= MAX_JUMPS:
+	elif Input.is_action_just_pressed("jump") and can_jump and GameManager.jump_count >= MAX_JUMPS and GameManager.gravity_inverted == 1:
 		GameManager.jump_count = 0
 		start_jump()
 	
-	if Input.is_action_just_released("jump") and velocity.y < 0:
+	if Input.is_action_just_released("jump")and velocity.y < 0 and GameManager.gravity_inverted == 1:
 		velocity.y = JUMP_VELOCITY / 3
+
 
 
 ############################# ATTACK ###########################
@@ -209,27 +220,44 @@ func _physics_process(delta: float) -> void:
 				attack.position = Vector2(-10,0)
 				attack_particle.scale.x = -1
 				dash_particle.scale.x = -1
-
+				
+		if GameManager.gravity_inverted == 1:
+			animated_sprite_2d.flip_v = false
+			terrain_hitbox.position = Vector2(0,4)
+			attack.scale. y = 1
+		elif GameManager.gravity_inverted == -1:
+			animated_sprite_2d.flip_v = true
+			terrain_hitbox.position =  Vector2(0,-4)
+			attack.scale. y = -1
 		if direction !=0:
 			var target_speed := direction * SPEED
 			velocity.x = move_toward(velocity.x, target_speed, SPEED * delta * 10)
-
+		
 		else:
 			velocity.x = 0
 ####################### ANIMATIONS ############################
 			if not isAttacking and is_on_floor():
 				#velocity.x = move_toward(velocity.x, 0, SPEED)
 				animated_sprite_2d.play("idle")
+			
+			elif not isAttacking && is_on_ceiling():
+				animated_sprite_2d.play("idle")
 		
 		if direction != 0 && is_on_floor():
 			animated_sprite_2d.play("run")
 			
-		elif velocity.y !=0 && direction == 0:
+		elif velocity.y !=0 && direction == 0 && not is_on_ceiling():
 			animated_sprite_2d.play("jump_vertical")
 			#animated_sprite_2d.play("jump")
 			
-		elif velocity.y !=0 && direction !=0:
+		elif velocity.y !=0 && direction !=0 && not is_on_ceiling():
 			animated_sprite_2d.play("jump")
+			
+		
+			
+		elif direction != 0 && is_on_ceiling():
+			animated_sprite_2d.play("run")
+			
 		
 		else:
 			animated_sprite_2d.play("idle")
@@ -254,7 +282,7 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(0.5).timeout
 			isShooting = false
 		
-
+	
 	move_and_slide()
 
 	
