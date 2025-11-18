@@ -36,21 +36,21 @@ func _ready() -> void:
 
 
 # manages player hp
-signal health_changed
+signal health_decreased
 func loose_hp(amount):
 	if lost_hp == false:
 		player_hp -= amount
-		emit_signal("health_changed")
+		emit_signal("health_decreased")
 		lost_hp = true
 		await get_tree().create_timer(1.2).timeout
 		lost_hp = false
 	else:
 		print("cant be hit")
 		
-		
+signal health_increased
 func port_heal():
 	player_hp = SaveLoad.SaveFileData.max_hp
-	emit_signal("health_changed")
+	emit_signal("health_increased")
 
 		
 signal pick_shard
@@ -58,10 +58,13 @@ func self_shard_pick():
 	emit_signal("pick_shard")
 
 
-
+signal death
 func _process(_delta: float) -> void:
 	if player_hp <= 0:
 		player_hp = SaveLoad.SaveFileData.max_hp
 		SaveLoad._save()
+		Engine.time_scale = 0.5
+		await get_tree().create_timer(1).timeout
+		Engine.time_scale = 1
 		get_tree().change_scene_to_file("res://scenes/ui/death_screen.tscn")
 	
