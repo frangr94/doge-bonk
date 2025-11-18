@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://uo214q18tpcp" path="res://assets/sprites/ronin_black_sword.png" id="2_jk2m4"]
 [ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
-[ext_resource type="AudioStream" uid="uid://g78j1138ip6i" path="res://assets/sounds/slashing.mp3" id="3_k4v7y"]
+[ext_resource type="AudioStream" uid="uid://cneuwufcub4fm" path="res://assets/sounds/slash_edge.mp3" id="4_xrqxk"]
 [ext_resource type="AudioStream" uid="uid://b6285dog7yp50" path="res://assets/sounds/dashing.mp3" id="5_xrqxk"]
 [ext_resource type="PackedScene" uid="uid://birkq74fidvh" path="res://scenes/particles/player/jump.tscn" id="6_6eyoc"]
-[ext_resource type="AudioStream" uid="uid://blt81iymc7r11" path="res://assets/sounds/hurt.wav" id="6_kqtwu"]
+[ext_resource type="AudioStream" uid="uid://crpbu3cyye3bu" path="res://assets/sounds/take_damage.mp3" id="6_xrqxk"]
 [ext_resource type="PackedScene" uid="uid://cuxw63vq3svsf" path="res://scenes/unlock/interacting_component.tscn" id="7_6eyoc"]
 [ext_resource type="PackedScene" uid="uid://y477wvbvi1we" path="res://scenes/particles/player/attack.tscn" id="7_eojnx"]
 [ext_resource type="PackedScene" uid="uid://dleddfcd741v6" path="res://scenes/ui/inventory.tscn" id="9_qgnko"]
@@ -439,13 +439,13 @@ position = Vector2(0.5, 4)
 shape = SubResource("CapsuleShape2D_atpat")
 
 [node name="sword_slash_sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_k4v7y")
-
-[node name="hurt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_kqtwu")
+stream = ExtResource("4_xrqxk")
 
 [node name="dash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_xrqxk")
+
+[node name="hurt_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xrqxk")
 
 [node name="interacting_component" parent="." instance=ExtResource("7_6eyoc")]
 

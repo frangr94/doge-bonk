@@ -17,6 +17,7 @@ extends CharacterBody2D
 @onready var dash_sound: AudioStreamPlayer = $dash
 @onready var player_hitbox: CollisionShape2D = $hitbox
 @onready var invincibility_effect: CPUParticles2D = $invincibility_effect
+@onready var hurt_sound: AudioStreamPlayer = $hurt_sound
 
 
 # running and jump speed
@@ -68,6 +69,7 @@ func _ready():
 		
 		
 func hit_invincibility():
+	hurt_sound.play()
 	invincibility_effect.emitting = true
 
 func bounce(strenght: float = 300):
