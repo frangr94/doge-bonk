@@ -1,5 +1,6 @@
 extends Node
 
+
 var max_hp: int
 var player_hp: int
 var attack_unlock: bool
@@ -8,6 +9,7 @@ var double_jump_unlock: bool
 var kamehameha_unlock: bool
 var bounce_unlock: bool
 
+var lost_hp: bool = false
 
 var jump_count = 0
 
@@ -35,10 +37,17 @@ func _ready() -> void:
 
 # manages player hp
 signal health_changed
-func loose_hp():
-	player_hp -= 1
-	emit_signal("health_changed")
-
+func loose_hp(amount):
+	if lost_hp == false:
+		player_hp -= amount
+		emit_signal("health_changed")
+		lost_hp = true
+		await get_tree().create_timer(1.2).timeout
+		lost_hp = false
+	else:
+		print("cant be hit")
+		
+		
 func port_heal():
 	player_hp = SaveLoad.SaveFileData.max_hp
 	emit_signal("health_changed")

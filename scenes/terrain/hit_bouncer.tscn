@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://l3qvwh0efoas"]
+[gd_scene load_steps=9 format=3 uid="uid://l3qvwh0efoas"]
 
 [ext_resource type="Texture2D" uid="uid://daccin5l1m2ij" path="res://assets/sprites/cpu_world_tileset.png" id="1_f6h00"]
 [ext_resource type="Script" uid="uid://cg85x8xels1mp" path="res://scripts/terrain/hit_bouncer.gd" id="1_t41y2"]
+[ext_resource type="AudioStream" uid="uid://buv0ahnplq01h" path="res://assets/sounds/bouncer_hit.mp3" id="3_852j1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t41y2"]
 atlas = ExtResource("1_f6h00")
@@ -48,5 +49,8 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t41y2")
+
+[node name="bounce_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_852j1")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
