@@ -5,10 +5,4 @@
 [resource]
 script = ExtResource("1_j2dgk")
 current_scene = "res://scenes/levels/tutorial.tscn"
-attack_unlock = true
-dash_unlock = true
-double_jump_unlock = true
-kamehameha_unlock = true
-bounce_unlock = true
 player_position = Vector2(2176, -96)
-pixeler_big_tutorial_defeated = true

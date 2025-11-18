@@ -13,11 +13,9 @@ extends CharacterBody2D
 @onready var shuriken = preload("uid://b811meofd7bjx")
 @onready var shuriken_position: Marker2D = $shuriken_position
 @onready var inventory: CanvasLayer = $inventory
-
 @onready var dash_particle: CPUParticles2D = $dash_particle
-
 @onready var dash_sound: AudioStreamPlayer = $dash
-
+@onready var player_hitbox: CollisionShape2D = $hitbox
 
 
 # running and jump speed
@@ -29,7 +27,6 @@ const GRAVITY := 1000
 const FALL_GRAVITY := 400
 
 
-
 # check if player is attacking
 var isAttacking = false
 var canAttack = true
@@ -39,19 +36,22 @@ const ATTACK_COOLDOWN := 0.3  # seconds between attacks
 # check if player is rolling
 var isDashing = false
 
+
 # dash cooldown
 var canDash = true
 const DASH_COOLDOWN = 0.5 # seconds
+
 
 # double jump controller
 var MAX_JUMPS = 1
 var jump_count = GameManager.jump_count
 var can_jump: bool = true
-
 var inventory_open = false
+
 
 # kamahameha controller
 var isShooting = false
+
 
 # respawn
 func _ready():
@@ -60,6 +60,15 @@ func _ready():
 		global_position = SaveLoad.SaveFileData.player_position
 	else:
 		global_position = Vector2(0,0)
+	
+	if not GameManager.health_changed.is_connected(Callable(self, "hit_invincibility")):
+		GameManager.health_changed.connect(Callable(self, "hit_invincibility"))
+		hit_invincibility()
+		
+		
+func hit_invincibility():
+	animated_sprite_2d.play("immune")
+	await  animated_sprite_2d.animation_finished
 
 func bounce(strenght: float = 300):
 	velocity.y = -strenght
