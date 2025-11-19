@@ -19,6 +19,8 @@ extends CharacterBody2D
 @onready var terrain_hitbox: CollisionShape2D = $CollisionShape2D
 @onready var hit_effect: CPUParticles2D = $hit_effect
 @onready var heal_effect: CPUParticles2D = $heal_effect
+@onready var pogo: AnimatedSprite2D = $pogo
+@onready var pogo_collision: CollisionShape2D = $pogo_area/pogo_collision
 
 
 # running and jump speed
@@ -54,6 +56,10 @@ var inventory_open = false
 
 # kamahameha controller
 var isShooting = false
+
+# pogo
+var can_pogo: bool = true
+var isPogo = false
 
 # respawn
 func _ready():
@@ -163,7 +169,7 @@ func _physics_process(delta: float) -> void:
 
 
 ############################# ATTACK ###########################
-	if Input.is_action_just_pressed("attack") and not isAttacking and canAttack and not isDashing and GameManager.attack_unlock == true:
+	if Input.is_action_just_pressed("attack") and not isAttacking and canAttack and not isDashing and GameManager.attack_unlock == true and isPogo == false and not Input.is_action_pressed("down"):
 		sword_slash_sound.play()
 		attack.play("default")
 		isAttacking = true
@@ -207,6 +213,7 @@ func _physics_process(delta: float) -> void:
 				attack.position = Vector2(10,0)
 				attack_particle.scale.x = 1
 				dash_particle.scale.x = 1
+				pogo.scale.x = -1
 		elif direction < 0:
 			if abs(velocity.x) > 10 and not isAttacking:
 				animated_sprite_2d.flip_h = true
@@ -218,6 +225,7 @@ func _physics_process(delta: float) -> void:
 				attack.position = Vector2(-10,0)
 				attack_particle.scale.x = -1
 				dash_particle.scale.x = -1
+				pogo.scale.x = 1
 				
 		if GameManager.gravity_inverted == 1:
 			animated_sprite_2d.flip_v = false
@@ -270,7 +278,7 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(2).timeout
 			isShooting = false
 
-######################## SHURIKEN #############################3
+######################## SHURIKEN #######################################
 		if Input.is_action_just_pressed("projectile_shoot") and not isAttacking and not isShooting:
 			isShooting = true
 			var s = shuriken.instantiate()
@@ -279,7 +287,21 @@ func _physics_process(delta: float) -> void:
 			get_parent().add_child(s)
 			await get_tree().create_timer(0.5).timeout
 			isShooting = false
-		
+
+####################### POGO #########################################
+		var attack_input = Input.is_action_pressed("attack")
+		var down_input = Input.is_action_pressed("down")
+		if attack_input and down_input and can_pogo == true and not is_on_floor() and not isDashing and not isAttacking:
+			isPogo = true
+			can_pogo = false
+			pogo_collision.disabled = false
+			pogo.play("default")
+			print("pogo")
+			await get_tree().create_timer(0.45).timeout
+			isPogo = false
+			can_pogo = true
+		else:
+			pogo_collision.disabled = true
 	
 	move_and_slide()
 

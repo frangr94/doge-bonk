@@ -36,7 +36,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_t41y2"]
 radius = 20.024984
 
-[node name="hit_bouncer" type="Area2D" groups=["sword"]]
+[node name="hit_bouncer" type="Area2D" groups=["pogo", "sword"]]
 collision_layer = 1025
 collision_mask = 1025
 script = ExtResource("1_t41y2")
