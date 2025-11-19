@@ -291,7 +291,7 @@ func _physics_process(delta: float) -> void:
 ####################### POGO #########################################
 		var attack_input = Input.is_action_pressed("attack")
 		var down_input = Input.is_action_pressed("down")
-		if attack_input and down_input and can_pogo == true and not is_on_floor() and not isDashing and not isAttacking:
+		if attack_input and down_input and can_pogo == true and not is_on_floor() and not isDashing and not isAttacking and not is_on_ceiling() and GameManager.bounce_unlock == true:
 			isPogo = true
 			can_pogo = false
 			pogo_collision.disabled = false

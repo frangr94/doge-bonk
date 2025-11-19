@@ -48,7 +48,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvxqa"]
-size = Vector2(15, 27)
+size = Vector2(15, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xd8n"]
 size = Vector2(11, 24)
@@ -64,7 +64,7 @@ animation = &"hit"
 autoplay = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 0.5)
+position = Vector2(1.5, -1.5)
 shape = SubResource("RectangleShape2D_jvxqa")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

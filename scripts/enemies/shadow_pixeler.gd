@@ -20,6 +20,10 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("sword"):
 		audio_stream_player.play()
 		animated_sprite_2d.play("hit")
+		if area.is_in_group("pogo"):
+			var player = area.get_parent() as CharacterBody2D
+			if player and player.has_method("bounce"):
+				player.bounce()
 		slash_explosion_pixeler.emitting = true
 		collision_shape_2d.set_deferred("disabled", true)
 		await animated_sprite_2d.animation_finished

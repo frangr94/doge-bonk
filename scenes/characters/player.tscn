@@ -404,7 +404,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrqxk"]
-size = Vector2(26, 22)
+size = Vector2(30, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76oj4"]
 size = Vector2(34, 16)
@@ -469,7 +469,7 @@ collision_layer = 1056
 collision_mask = 0
 
 [node name="pogo_collision" type="CollisionShape2D" parent="pogo_area"]
-position = Vector2(0, 7)
+position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_xrqxk")
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
