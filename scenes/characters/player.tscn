@@ -1,8 +1,7 @@
-[gd_scene load_steps=69 format=3 uid="uid://yshyoholm5s8"]
+[gd_scene load_steps=74 format=3 uid="uid://yshyoholm5s8"]
 
 [ext_resource type="Script" uid="uid://mn2tggl4d4ux" path="res://scripts/player/player_movement.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://uo214q18tpcp" path="res://assets/sprites/ronin_black_sword.png" id="2_jk2m4"]
-[ext_resource type="Texture2D" uid="uid://b8at2exl123ia" path="res://assets/sprites/ronin.png" id="2_kqtwu"]
 [ext_resource type="AudioStream" uid="uid://cneuwufcub4fm" path="res://assets/sounds/slash_edge.mp3" id="4_xrqxk"]
 [ext_resource type="AudioStream" uid="uid://b6285dog7yp50" path="res://assets/sounds/dashing.mp3" id="5_xrqxk"]
 [ext_resource type="PackedScene" uid="uid://birkq74fidvh" path="res://scenes/particles/player/jump.tscn" id="6_6eyoc"]
@@ -368,28 +367,25 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kqtwu"]
-atlas = ExtResource("2_kqtwu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1y1o"]
+atlas = ExtResource("2_jk2m4")
 region = Rect2(0, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v1y1o"]
-atlas = ExtResource("2_kqtwu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnvwh"]
+atlas = ExtResource("2_jk2m4")
 region = Rect2(32, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hnvwh"]
-atlas = ExtResource("2_kqtwu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nktl3"]
+atlas = ExtResource("2_jk2m4")
 region = Rect2(64, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nktl3"]
-atlas = ExtResource("2_kqtwu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pue7u"]
+atlas = ExtResource("2_jk2m4")
 region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yyjep"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kqtwu")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v1y1o")
 }, {
@@ -398,11 +394,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nktl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pue7u")
 }],
 "loop": false,
 "name": &"default",
 "speed": 20.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrqxk"]
+size = Vector2(26, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76oj4"]
 size = Vector2(34, 16)
@@ -410,6 +412,42 @@ size = Vector2(34, 16)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atpat"]
 radius = 3.5
 height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k8pb"]
+atlas = ExtResource("2_jk2m4")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5njio"]
+atlas = ExtResource("2_jk2m4")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aphfe"]
+atlas = ExtResource("2_jk2m4")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvq58"]
+atlas = ExtResource("2_jk2m4")
+region = Rect2(96, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qgqs5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k8pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5njio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aphfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvq58")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [node name="player" type="CharacterBody2D"]
 z_index = 11
@@ -419,15 +457,20 @@ script = ExtResource("1_76oj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qgnko")
-animation = &"kamehameha"
-frame = 3
-frame_progress = 1.0
+animation = &"air_dash"
 
 [node name="attack" type="AnimatedSprite2D" parent="."]
 position = Vector2(10, 0)
 sprite_frames = SubResource("SpriteFrames_yyjep")
-frame = 3
 frame_progress = 1.0
+
+[node name="pogo_area" type="Area2D" parent="." groups=["pogo", "sword"]]
+collision_layer = 1056
+collision_mask = 0
+
+[node name="pogo_collision" type="CollisionShape2D" parent="pogo_area"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_xrqxk")
 
 [node name="attack_area" type="Area2D" parent="." groups=["sword"]]
 collision_layer = 1568
@@ -476,3 +519,8 @@ script = ExtResource("12_xhtjm")
 [node name="hit_effect" parent="." instance=ExtResource("10_xrqxk")]
 
 [node name="heal_effect" parent="." instance=ExtResource("16_g66nw")]
+
+[node name="pogo" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qgqs5")
+frame = 3
+frame_progress = 1.0
